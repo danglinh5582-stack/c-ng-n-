@@ -7,6 +7,9 @@
 <title>Tra cứu công nợ khách hàng</title>
 
 <style>
+
+/* ===== GIAO DIỆN CHUNG ===== */
+
 body {
     margin: 0;
     padding: 15px;
@@ -20,24 +23,17 @@ body {
     margin: auto;
 }
 
-.table-container {
-    overflow-x: auto;
-    width: 100%;
-}
-
-table {
-    width: 100%;
-    min-width: 1450px;
-    border-collapse: collapse;
-    table-layout: auto;
-    background: white;
-}
+/* ===== TIÊU ĐỀ ===== */
 
 h1 {
     text-align: center;
     color: #0f4c81;
-    font-size: 24px;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0 25px;
 }
+
+/* ===== KHUNG ===== */
 
 .card {
     background: white;
@@ -47,6 +43,8 @@ h1 {
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 
+/* ===== TÌM KIẾM ===== */
+
 .search-box {
     display: flex;
     gap: 10px;
@@ -54,12 +52,14 @@ h1 {
 }
 
 input, select {
-    padding: 10px;
+    padding: 13px;
     border: 1px solid #ccc;
     border-radius: 6px;
     min-width: 250px;
-    font-size: 14px;
+    font-size: 17px;
 }
+
+/* ===== THỐNG KÊ ===== */
 
 .stats {
     display: flex;
@@ -74,6 +74,27 @@ input, select {
     color: #fff;
     padding: 15px;
     border-radius: 10px;
+    font-size: 18px;
+}
+
+.stat h2 {
+    font-size: 30px;
+    margin: 12px 0 5px;
+}
+
+/* ===== BẢNG DỮ LIỆU ===== */
+
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    min-width: 1550px;
+    border-collapse: collapse;
+    table-layout: auto;
+    background: white;
 }
 
 th {
@@ -83,13 +104,14 @@ th {
     top: 0;
     white-space: nowrap;
     font-weight: bold;
+    font-size: 17px;
 }
 
 th, td {
-    padding: 7px 8px;
+    padding: 10px 10px;
     border: 1px solid #ddd;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 17px;
+    line-height: 1.5;
     vertical-align: middle;
 }
 
@@ -98,57 +120,72 @@ td {
 }
 
 /* Mã khách hàng */
-th:nth-child(1), td:nth-child(1) {
-    width: 100px;
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 110px;
     white-space: nowrap;
 }
 
 /* Tên khách hàng */
-th:nth-child(2), td:nth-child(2) {
-    min-width: 200px;
-}
 
-/* Địa chỉ */
-th:nth-child(3), td:nth-child(3) {
+th:nth-child(2),
+td:nth-child(2) {
     min-width: 220px;
 }
 
+/* Địa chỉ */
+
+th:nth-child(3),
+td:nth-child(3) {
+    min-width: 250px;
+}
+
 /* Nhân viên kinh doanh */
-th:nth-child(4), td:nth-child(4) {
-    width: 130px;
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 150px;
     white-space: nowrap;
 }
 
 /* Các cột quá hạn */
+
 th:nth-child(5), td:nth-child(5),
 th:nth-child(6), td:nth-child(6),
 th:nth-child(7), td:nth-child(7) {
-    width: 100px;
+    width: 115px;
     text-align: right;
     white-space: nowrap;
 }
 
 /* Tổng quá hạn và dư nợ */
+
 th:nth-child(8), td:nth-child(8),
 th:nth-child(9), td:nth-child(9) {
-    width: 125px;
+    width: 145px;
     text-align: right;
     white-space: nowrap;
     font-weight: bold;
 }
 
 /* Ngày thanh toán và mua hàng */
+
 th:nth-child(10), td:nth-child(10),
 th:nth-child(11), td:nth-child(11) {
-    width: 145px;
+    width: 165px;
     text-align: center;
     white-space: nowrap;
 }
+
+/* Hiệu ứng khi di chuột */
 
 tr:hover {
     background: #f2f7ff;
     cursor: pointer;
 }
+
+/* ===== CHI TIẾT KHÁCH HÀNG ===== */
 
 .modal {
     display: none;
@@ -165,18 +202,43 @@ tr:hover {
     margin: 40px auto;
     padding: 20px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 17px;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    color: #0f4c81;
 }
 
 .close {
     float: right;
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
 }
 
 .label {
     font-weight: bold;
 }
+
+/* ===== MÀN HÌNH NHỎ ===== */
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+    input, select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}
+
 </style>
 </head>
 
@@ -187,6 +249,7 @@ tr:hover {
 <h1>TRA CỨU CÔNG NỢ KHÁCH HÀNG</h1>
 
 <div class="card">
+
     <div class="search-box">
 
         <input
@@ -195,56 +258,90 @@ tr:hover {
             placeholder="Tìm mã KH, tên KH, địa chỉ hoặc NVKD">
 
         <select id="nvkdFilter">
+
             <option value="">Tất cả NVKD</option>
+
         </select>
 
     </div>
+
 </div>
+
+<!-- THỐNG KÊ -->
 
 <div class="stats">
 
     <div class="stat">
+
         <div>Tổng khách hàng</div>
+
         <h2 id="tongkh">0</h2>
+
     </div>
 
     <div class="stat">
+
         <div>Tổng công nợ quá hạn</div>
+
         <h2 id="tongqh">0</h2>
+
     </div>
 
     <div class="stat">
+
         <div>Tổng dư nợ cuối ngày</div>
+
         <h2 id="tongdn">0</h2>
+
     </div>
 
 </div>
+
+<!-- BẢNG CÔNG NỢ -->
 
 <div class="card table-container">
 
 <table>
 
 <thead>
+
 <tr>
+
     <th>Mã KH</th>
+
     <th>Tên khách hàng</th>
+
     <th>Địa chỉ</th>
+
     <th>NVKD</th>
+
     <th>QH 1T</th>
+
     <th>QH 2T</th>
+
     <th>QH 3T</th>
+
     <th>Tổng QH</th>
+
     <th>Dư nợ</th>
+
     <th>TT gần nhất</th>
+
     <th>Mua hàng gần nhất</th>
+
 </tr>
+
 </thead>
 
 <tbody id="dataBody"></tbody>
 
 </table>
+
 </div>
+
 </div>
+
+<!-- CỬA SỔ CHI TIẾT -->
 
 <div class="modal" id="modal">
 
@@ -260,21 +357,29 @@ tr:hover {
 
 <script>
 
+// ===== DỮ LIỆU =====
+
 let allData = [];
+
+// ===== CHUYỂN SỐ =====
 
 function toNumber(value) {
 
     if (!value) return 0;
 
     return Number(
+
         String(value)
         .replace(/\./g, '')
         .replace(/,/g, '')
         .replace(/-/g, '0')
         .trim()
+
     ) || 0;
 
 }
+
+// ===== ĐỊNH DẠNG SỐ =====
 
 function formatNumber(number) {
 
@@ -283,12 +388,16 @@ function formatNumber(number) {
 
 }
 
+// ===== ĐỌC FILE CSV =====
+
 fetch('Congno.csv')
 
 .then(r => {
 
     if (!r.ok) {
+
         throw new Error('Không tìm thấy file Congno.csv');
+
     }
 
     return r.text();
@@ -332,6 +441,7 @@ fetch('Congno.csv')
     });
 
     buildNVKD();
+
     render();
 
 })
@@ -341,6 +451,8 @@ fetch('Congno.csv')
     alert('Lỗi tải dữ liệu: ' + error.message);
 
 });
+
+// ===== TẠO DANH SÁCH NVKD =====
 
 function buildNVKD() {
 
@@ -367,6 +479,7 @@ function buildNVKD() {
             document.createElement("option");
 
         op.value = x;
+
         op.textContent = x;
 
         select.appendChild(op);
@@ -374,6 +487,8 @@ function buildNVKD() {
     });
 
 }
+
+// ===== HIỂN THỊ DỮ LIỆU =====
 
 function render() {
 
@@ -407,6 +522,8 @@ function render() {
 
     });
 
+    // Sắp xếp dư nợ giảm dần
+
     data.sort(
 
         (a, b) =>
@@ -415,11 +532,13 @@ function render() {
     );
 
     let tongQH = 0;
+
     let tongDN = 0;
 
     data.forEach(r => {
 
         tongQH += toNumber(r.tongqh);
+
         tongDN += toNumber(r.duno);
 
         const tr = document.createElement("tr");
@@ -427,6 +546,7 @@ function render() {
         tr.onclick = () => showDetail(r);
 
         [
+
             r.ma,
             r.ten,
             r.diachi,
@@ -438,6 +558,7 @@ function render() {
             r.duno,
             r.thanhtoan,
             r.muahang
+
         ].forEach(value => {
 
             const td = document.createElement("td");
@@ -452,6 +573,8 @@ function render() {
 
     });
 
+    // CẬP NHẬT THỐNG KÊ
+
     document.getElementById("tongkh")
         .innerText = formatNumber(data.length);
 
@@ -463,11 +586,15 @@ function render() {
 
 }
 
+// ===== TÌM KIẾM =====
+
 document.getElementById("searchInput")
     .addEventListener("input", render);
 
 document.getElementById("nvkdFilter")
     .addEventListener("change", render);
+
+// ===== CHI TIẾT KHÁCH HÀNG =====
 
 function showDetail(r) {
 
@@ -480,6 +607,7 @@ function showDetail(r) {
     detail.innerHTML = "";
 
     const h2 = document.createElement("h2");
+
     h2.textContent = r.ten;
 
     detail.appendChild(h2);
@@ -502,23 +630,34 @@ function showDetail(r) {
     fields.forEach((item, index) => {
 
         if (index === 3 || index === 8) {
-            detail.appendChild(document.createElement("hr"));
+
+            detail.appendChild(
+                document.createElement("hr")
+            );
+
         }
 
         const p = document.createElement("p");
 
         const label = document.createElement("span");
+
         label.className = "label";
+
         label.textContent = item[0] + " ";
 
         p.appendChild(label);
-        p.appendChild(document.createTextNode(item[1] || ""));
+
+        p.appendChild(
+            document.createTextNode(item[1] || "")
+        );
 
         detail.appendChild(p);
 
     });
 
 }
+
+// ===== ĐÓNG CHI TIẾT =====
 
 function closeModal() {
 
@@ -527,11 +666,15 @@ function closeModal() {
 
 }
 
+// Bấm ra ngoài để đóng cửa sổ chi tiết
+
 document.getElementById("modal")
     .addEventListener("click", function(e) {
 
         if (e.target === this) {
+
             closeModal();
+
         }
 
     });
