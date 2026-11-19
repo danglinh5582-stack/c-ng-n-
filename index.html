@@ -7,107 +7,49 @@
 
 <style>
 body{
+    font-family: Arial,sans-serif;
     margin:0;
-    padding:15px;
-    font-family:Arial,sans-serif;
-    background:#f3f4f6;
+    padding:20px;
+    background:#f5f5f5;
 }
 .container{
-    max-width:1400px;
+    max-width:1200px;
     margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 h1{
     text-align:center;
-    color:#0f4c81;
+    color:#0066cc;
 }
-
-.card{
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
-
-.search-box{
+.controls{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
+    margin-bottom:15px;
 }
-
 input,select{
     padding:10px;
     border:1px solid #ccc;
-    border-radius:6px;
-    min-width:250px;
+    border-radius:5px;
 }
-
-.stats{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.stat{
-    flex:1;
-    min-width:220px;
-    background:#0f4c81;
-    color:#fff;
-    padding:15px;
-    border-radius:10px;
-}
-
-.table-container{
-    overflow-x:auto;
-}
-
 table{
     width:100%;
     border-collapse:collapse;
-    background:white;
 }
-
 th{
-    background:#0f4c81;
+    background:#0066cc;
     color:white;
-    position:sticky;
-    top:0;
+    padding:10px;
 }
-
-th,td{
-    padding:8px;
+td{
     border:1px solid #ddd;
-    white-space:nowrap;
+    padding:8px;
 }
-
-tr:hover{
-    background:#f2f7ff;
-    cursor:pointer;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5);
-}
-
-.modal-content{
-    background:white;
-    max-width:700px;
-    margin:40px auto;
-    padding:20px;
-    border-radius:10px;
-}
-
-.close{
-    float:right;
-    font-size:24px;
-    cursor:pointer;
-}
-
-.label{
-    font-weight:bold;
+tr:nth-child(even){
+    background:#f9f9f9;
 }
 </style>
 </head>
@@ -115,332 +57,49 @@ tr:hover{
 <body>
 
 <div class="container">
+<h1>Tra cứu công nợ khách hàng</h1>
 
-<h1>TRA CỨU CÔNG NỢ KHÁCH HÀNG</h1>
-
-<div class="card">
-
-<div class="search-box">
-
-<input
-type="text"
-id="searchInput"
-placeholder="Tìm mã KH, tên KH, địa chỉ hoặc NVKD">
-
-<select id="nvkdFilter">
-<option value="">Tất cả NVKD</option>
+<div class="controls">
+<input type="text" id="search" placeholder="Tìm mã hoặc tên khách hàng">
+<select id="nvkd">
+    <option>Tất cả NVKD</option>
+    <option>Nguyễn Văn Thông</option>
+    <option>Nguyễn Hữu Minh</option>
+    <option>Nguyễn Thành Trung</option>
 </select>
-
 </div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<div>Tổng khách hàng</div>
-<h2 id="tongkh">0</h2>
-</div>
-
-<div class="stat">
-<div>Tổng công nợ quá hạn</div>
-<h2 id="tongqh">0</h2>
-</div>
-
-<div class="stat">
-<div>Tổng dư nợ cuối ngày</div>
-<h2 id="tongdn">0</h2>
-</div>
-
-</div>
-
-<div class="card table-container">
 
 <table>
-
 <thead>
-
 <tr>
 <th>Mã KH</th>
 <th>Tên khách hàng</th>
-<th>Địa chỉ</th>
 <th>NVKD</th>
-<th>QH 1T</th>
-<th>QH 2T</th>
-<th>QH 3T</th>
-<th>Tổng QH</th>
-<th>Dư nợ</th>
-<th>TT gần nhất</th>
-<th>Mua hàng gần nhất</th>
+<th>Cộng quá hạn</th>
+<th>Dư nợ cuối ngày</th>
 </tr>
-
 </thead>
 
-<tbody id="dataBody"></tbody>
+<tbody>
+<tr>
+<td>KH001</td>
+<td>Công ty ABC</td>
+<td>Nguyễn Văn Thông</td>
+<td>20.000.000</td>
+<td>150.000.000</td>
+</tr>
 
+<tr>
+<td>KH002</td>
+<td>Công ty XYZ</td>
+<td>Nguyễn Hữu Minh</td>
+<td>0</td>
+<td>85.000.000</td>
+</tr>
+</tbody>
 </table>
 
 </div>
-
-</div>
-
-<div class="modal" id="modal">
-
-<div class="modal-content">
-
-<span class="close" onclick="closeModal()">×</span>
-
-<div id="detail"></div>
-
-</div>
-
-</div>
-
-<script>
-
-let allData=[];
-
-function toNumber(value){
-
-if(!value) return 0;
-
-return Number(
-String(value)
-.replace(/\./g,'')
-.replace(/,/g,'')
-.replace(/-/g,'0')
-.trim()
-)||0;
-
-}
-
-function formatNumber(number){
-
-return new Intl.NumberFormat('vi-VN')
-.format(number);
-
-}
-
-fetch('Congno.csv')
-
-.then(r=>r.text())
-
-.then(text=>{
-
-const rows=text
-.split('\n')
-.filter(x=>x.trim()!=='');
-
-rows.forEach(row=>{
-
-const c=row.split(';');
-
-if(c.length<11) return;
-
-if(
-c[0].includes('Mã KH') ||
-c[0].includes('M? KH')
-) return;
-
-allData.push({
-
-ma:c[0]?.trim(),
-ten:c[1]?.trim(),
-diachi:c[2]?.trim(),
-nvkd:c[3]?.trim(),
-
-qh1:c[4]?.trim(),
-qh2:c[5]?.trim(),
-qh3:c[6]?.trim(),
-
-tongqh:c[7]?.trim(),
-duno:c[8]?.trim(),
-
-thanhtoan:c[9]?.trim(),
-
-muahang:c[10]?.trim()
-
-});
-
-});
-
-buildNVKD();
-
-render();
-
-});
-
-function buildNVKD(){
-
-const ds=[
-...new Set(
-allData
-.map(x=>x.nvkd)
-.filter(x=>x)
-)
-];
-
-const select=
-document.getElementById("nvkdFilter");
-
-ds.sort();
-
-ds.forEach(x=>{
-
-const op=
-document.createElement("option");
-
-op.value=x;
-op.textContent=x;
-
-select.appendChild(op);
-
-});
-
-}
-
-function render(){
-
-const keyword=
-document
-.getElementById("searchInput")
-.value
-.toLowerCase();
-
-const nvkd=
-document
-.getElementById("nvkdFilter")
-.value;
-
-const body=
-document.getElementById("dataBody");
-
-body.innerHTML="";
-
-const data=
-allData.filter(r=>{
-
-const text=(
-r.ma+" "+
-r.ten+" "+
-r.diachi+" "+
-r.nvkd
-).toLowerCase();
-
-return text.includes(keyword)
-&&
-(!nvkd || r.nvkd===nvkd);
-
-});
-
-data.sort(
-(a,b)=>
-toNumber(b.duno)
--
-toNumber(a.duno)
-);
-
-let tongQH=0;
-let tongDN=0;
-
-data.forEach(r=>{
-
-tongQH += toNumber(r.tongqh);
-tongDN += toNumber(r.duno);
-
-body.innerHTML +=`
-
-<tr onclick='showDetail(${JSON.stringify(r)})'>
-
-<td>${r.ma}</td>
-
-<td>${r.ten}</td>
-
-<td>${r.diachi}</td>
-
-<td>${r.nvkd}</td>
-
-<td>${r.qh1}</td>
-
-<td>${r.qh2}</td>
-
-<td>${r.qh3}</td>
-
-<td>${r.tongqh}</td>
-
-<td>${r.duno}</td>
-
-<td>${r.thanhtoan}</td>
-
-<td>${r.muahang}</td>
-
-</tr>
-
-`;
-
-});
-
-document.getElementById("tongkh")
-.innerText=formatNumber(data.length);
-
-document.getElementById("tongqh")
-.innerText=formatNumber(tongQH);
-
-document.getElementById("tongdn")
-.innerText=formatNumber(tongDN);
-
-}
-
-document.addEventListener("input",render);
-
-document.addEventListener("change",render);
-
-function showDetail(r){
-
-document.getElementById("modal")
-.style.display="block";
-
-document.getElementById("detail")
-.innerHTML=`
-
-<h2>${r.ten}</h2>
-
-<p><span class="label">Mã KH:</span> ${r.ma}</p>
-
-<p><span class="label">Địa chỉ:</span> ${r.diachi}</p>
-
-<p><span class="label">NVKD:</span> ${r.nvkd}</p>
-
-<hr>
-
-<p><span class="label">Quá hạn 1 tháng:</span> ${r.qh1}</p>
-
-<p><span class="label">Quá hạn 2 tháng:</span> ${r.qh2}</p>
-
-<p><span class="label">Quá hạn 3 tháng:</span> ${r.qh3}</p>
-
-<p><span class="label">Tổng công nợ quá hạn:</span> ${r.tongqh}</p>
-
-<p><span class="label">Dư nợ cuối ngày:</span> ${r.duno}</p>
-
-<hr>
-
-<p><span class="label">Ngày thanh toán gần nhất:</span> ${r.thanhtoan}</p>
-
-<p><span class="label">Ngày mua hàng gần nhất:</span> ${r.muahang}</p>
-
-`;
-
-}
-
-function closeModal(){
-
-document.getElementById("modal")
-.style.display="none";
-
-}
-
-</script>
 
 </body>
 </html>
