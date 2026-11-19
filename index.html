@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tra cứu công nợ khách hàng</title>
 
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <style>
 
 /* ================= GIAO DIỆN CHUNG ================= */
@@ -67,6 +69,7 @@ h1 {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 input, select {
@@ -81,6 +84,37 @@ input, select {
 
 #searchInput {
     flex: 1;
+}
+
+/* Ô tích chọn lọc */
+.check-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.check-filter input[type=checkbox] {
+    min-width: 0;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Ô chọn file Excel */
+.file-pick {
+    font-size: 20px;
+}
+
+.file-pick input[type=file] {
+    min-width: 0;
+    width: auto;
+    padding: 8px;
+    font-size: 17px;
 }
 
 /* ================= THỐNG KÊ ================= */
@@ -138,6 +172,12 @@ thead th {
     vertical-align: middle;
     white-space: normal;
     box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    cursor: pointer;
+    user-select: none;
+}
+
+thead th:hover {
+    background: #0b3961;
 }
 
 th, td {
@@ -380,6 +420,7 @@ tbody tr:hover {
 
     .search-box {
         flex-direction: column;
+        align-items: stretch;
         gap: 10px;
     }
 
@@ -388,6 +429,16 @@ tbody tr:hover {
         min-width: 0;
         padding: 12px 14px;
         font-size: 19px;
+    }
+
+    .check-filter {
+        font-size: 19px;
+    }
+
+    .check-filter input[type=checkbox] {
+        width: 24px;
+        height: 24px;
+        padding: 0;
     }
 
     .stats {
@@ -412,6 +463,11 @@ tbody tr:hover {
 
     .mobile-list {
         display: block;
+    }
+
+    .mobile-table thead th {
+        cursor: pointer;
+        user-select: none;
     }
 
     .modal {
@@ -471,6 +527,16 @@ tbody tr:hover {
                 <select id="nvkdFilter">
                     <option value="">Tất cả NVKD</option>
                 </select>
+
+                <label class="check-filter">
+                    <input type="checkbox" id="overdueOnly">
+                    Chỉ khách có nợ quá hạn
+                </label>
+
+                <label class="check-filter file-pick">
+                    Chọn file Excel:
+                    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+                </label>
             </div>
         </div>
 
@@ -500,16 +566,16 @@ tbody tr:hover {
         <table>
             <thead>
                 <tr>
-                    <th>Tên khách hàng</th>
-                    <th>Địa chỉ</th>
-                    <th>NVKD</th>
-                    <th>QH 1T</th>
-                    <th>QH 2T</th>
-                    <th>QH 3T</th>
-                    <th>Tổng QH</th>
-                    <th>Dư nợ</th>
-                    <th>TT gần nhất</th>
-                    <th>Mua hàng gần nhất</th>
+                    <th data-key="ten">Tên khách hàng<span class="arr"></span></th>
+                    <th data-key="diachi">Địa chỉ<span class="arr"></span></th>
+                    <th data-key="nvkd">NVKD<span class="arr"></span></th>
+                    <th data-key="qh1">QH 1T<span class="arr"></span></th>
+                    <th data-key="qh2">QH 2T<span class="arr"></span></th>
+                    <th data-key="qh3">QH 3T<span class="arr"></span></th>
+                    <th data-key="tongqh">Tổng QH<span class="arr"></span></th>
+                    <th data-key="duno">Dư nợ<span class="arr"></span></th>
+                    <th data-key="thanhtoan">TT gần nhất<span class="arr"></span></th>
+                    <th data-key="muahang">Mua hàng gần nhất<span class="arr"></span></th>
                 </tr>
             </thead>
             <tbody id="dataBody"></tbody>
@@ -553,6 +619,13 @@ window.addEventListener('resize', updateStickyOffset);
 
 let allData = [];
 
+// Trạng thái sắp xếp (mặc định: dư nợ giảm dần)
+let sortKey = "duno";
+let sortAsc = false;
+
+const TEXT_KEYS = ["ten", "diachi", "nvkd"];
+const DATE_KEYS = ["thanhtoan", "muahang"];
+
 // ================= CHUYỂN ĐỔI SỐ =================
 
 function toNumber(value) {
@@ -572,7 +645,90 @@ function formatNumber(number) {
     return new Intl.NumberFormat('vi-VN').format(number);
 }
 
-// ================= ĐỌC FILE CSV =================
+// Chuyển ngày dd/mm/yyyy thành số để so sánh
+function dateValue(s) {
+    const m = String(s || "").match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    return m ? (+m[3]) * 10000 + (+m[2]) * 100 + (+m[1]) : 0;
+}
+
+// Giá trị dùng để sắp xếp
+function sortValue(r, key) {
+    if (TEXT_KEYS.includes(key)) return (r[key] || "").toLowerCase();
+    if (DATE_KEYS.includes(key)) return dateValue(r[key]);
+    return toNumber(r[key]);
+}
+
+// ================= NẠP DỮ LIỆU (CSV HOẶC EXCEL) =================
+
+// Chuyển nội dung CSV (phân cách bằng ;) thành mảng các dòng
+function csvToRows(text) {
+    return text
+        .replace(/^\uFEFF/, '')
+        .split(/\r?\n/)
+        .filter(x => x.trim() !== '')
+        .map(r => r.split(';'));
+}
+
+// Nhận mảng các dòng, mỗi dòng là mảng các ô, rồi hiển thị
+function ingest(rows) {
+    allData = [];
+
+    rows.forEach(c => {
+        if (c.length < 10) return;
+
+        const s = i => String(c[i] ?? "").trim();
+
+        if (
+            s(0).includes('Mã KH') ||
+            s(0).includes('M? KH') ||
+            s(1).toLowerCase().includes('tổng cộng') ||
+            !s(1)
+        ) return;
+
+        allData.push({
+            ma: s(0),
+            ten: s(1),
+            diachi: s(2),
+            sdt: s(3),
+            nvkd: s(4),
+            qh1: s(5),
+            qh2: s(6),
+            qh3: s(7),
+            tongqh: s(8),
+            duno: s(9),
+            thanhtoan: s(10),
+            muahang: s(11)
+        });
+    });
+
+    buildNVKD();
+    render();
+    updateStickyOffset();
+}
+
+// Chọn file từ máy: hỗ trợ .xlsx, .xls và .csv
+document.getElementById("fileInput").addEventListener("change", e => {
+    const f = e.target.files[0];
+    if (!f) return;
+
+    if (/\.csv$/i.test(f.name)) {
+        f.text().then(t => ingest(csvToRows(t)));
+        return;
+    }
+
+    f.arrayBuffer().then(buf => {
+        try {
+            const wb = XLSX.read(buf, { type: "array" });
+            const ws = wb.Sheets[wb.SheetNames[0]];
+            // raw:false lấy đúng chữ hiển thị trong Excel (số có dấu chấm, ngày dd/mm/yyyy)
+            ingest(XLSX.utils.sheet_to_json(ws, { header: 1, defval: "", raw: false }));
+        } catch (err) {
+            alert("Không đọc được file Excel: " + err.message);
+        }
+    });
+});
+
+// ================= ĐỌC FILE CSV TRÊN GITHUB =================
 
 fetch('Congno.csv?v=' + Date.now(), { cache: 'no-store' })
 .then(r => {
@@ -582,41 +738,7 @@ fetch('Congno.csv?v=' + Date.now(), { cache: 'no-store' })
     return r.text();
 })
 .then(text => {
-    const rows = text
-        .replace(/^\uFEFF/, '')
-        .split(/\r?\n/)
-        .filter(x => x.trim() !== '');
-
-    rows.forEach(row => {
-        const c = row.split(';');
-
-        if (c.length < 10) return;
-
-        if (
-            c[0].includes('Mã KH') ||
-            c[0].includes('M? KH') ||
-            c[1]?.toLowerCase().includes('tổng cộng')
-        ) return;
-
-        allData.push({
-            ma: c[0]?.trim(),
-            ten: c[1]?.trim(),
-            diachi: c[2]?.trim(),
-            sdt: c[3]?.trim(),
-            nvkd: c[4]?.trim(),
-            qh1: c[5]?.trim(),
-            qh2: c[6]?.trim(),
-            qh3: c[7]?.trim(),
-            tongqh: c[8]?.trim(),
-            duno: c[9]?.trim(),
-            thanhtoan: c[10]?.trim(),
-            muahang: c[11]?.trim()
-        });
-    });
-
-    buildNVKD();
-    render();
-    updateStickyOffset();
+    ingest(csvToRows(text));
 })
 .catch(error => {
     document.getElementById("dataBody").innerHTML =
@@ -637,6 +759,7 @@ function buildNVKD() {
     ];
 
     const select = document.getElementById("nvkdFilter");
+    select.innerHTML = '<option value="">Tất cả NVKD</option>';
     ds.sort();
 
     ds.forEach(x => {
@@ -644,6 +767,31 @@ function buildNVKD() {
         op.value = x;
         op.textContent = x;
         select.appendChild(op);
+    });
+}
+
+// ================= BẤM TIÊU ĐỀ ĐỂ SẮP XẾP =================
+
+function setSort(key) {
+    if (sortKey === key) {
+        sortAsc = !sortAsc;
+    } else {
+        sortKey = key;
+        // Cột chữ: A→Z trước; cột số/ngày: lớn → nhỏ trước
+        sortAsc = TEXT_KEYS.includes(key);
+    }
+    render();
+}
+
+document.querySelectorAll("thead th[data-key]").forEach(th => {
+    th.addEventListener("click", () => setSort(th.dataset.key));
+});
+
+function updateArrows() {
+    document.querySelectorAll("th[data-key]").forEach(th => {
+        const arr = th.querySelector(".arr");
+        if (!arr) return;
+        arr.textContent = th.dataset.key === sortKey ? (sortAsc ? " ▲" : " ▼") : "";
     });
 }
 
@@ -659,6 +807,10 @@ function render() {
     const nvkd = document
         .getElementById("nvkdFilter")
         .value;
+
+    const overdueOnly = document
+        .getElementById("overdueOnly")
+        .checked;
 
     const body = document.getElementById("dataBody");
     const mobileList = document.getElementById("mobileList");
@@ -676,10 +828,18 @@ function render() {
         ).toLowerCase();
 
         return text.includes(keyword)
-            && (!nvkd || r.nvkd === nvkd);
+            && (!nvkd || r.nvkd === nvkd)
+            && (!overdueOnly || toNumber(r.tongqh) > 0);
     });
 
-    data.sort((a, b) => toNumber(b.duno) - toNumber(a.duno));
+    data.sort((a, b) => {
+        const x = sortValue(a, sortKey);
+        const y = sortValue(b, sortKey);
+        let cmp;
+        if (typeof x === "string") cmp = x.localeCompare(y, "vi");
+        else cmp = x - y;
+        return sortAsc ? cmp : -cmp;
+    });
 
     let tongQH = 0;
     let tongDN = 0;
@@ -693,12 +853,15 @@ function render() {
     mobileTable.innerHTML = `
         <thead>
             <tr>
-                <th>Tên khách hàng</th>
-                <th>Tổng nợ quá hạn</th>
-                <th>Dư nợ cuối</th>
+                <th data-key="ten">Tên khách hàng<span class="arr"></span></th>
+                <th data-key="tongqh">Tổng nợ quá hạn<span class="arr"></span></th>
+                <th data-key="duno">Dư nợ cuối<span class="arr"></span></th>
             </tr>
         </thead>
     `;
+    mobileTable.querySelectorAll("th[data-key]").forEach(th => {
+        th.addEventListener("click", () => setSort(th.dataset.key));
+    });
     const mobileTbody = document.createElement("tbody");
 
     data.forEach(r => {
@@ -764,12 +927,15 @@ function render() {
     document.getElementById("tongkh").innerText = formatNumber(data.length);
     document.getElementById("tongqh").innerText = formatNumber(tongQH);
     document.getElementById("tongdn").innerText = formatNumber(tongDN);
+
+    updateArrows();
 }
 
-// ================= TÌM KIẾM =================
+// ================= TÌM KIẾM / LỌC =================
 
 document.getElementById("searchInput").addEventListener("input", render);
 document.getElementById("nvkdFilter").addEventListener("change", render);
+document.getElementById("overdueOnly").addEventListener("change", render);
 
 // ================= CHI TIẾT KHÁCH HÀNG =================
 
