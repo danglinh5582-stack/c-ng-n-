@@ -619,9 +619,9 @@ window.addEventListener('resize', updateStickyOffset);
 
 let allData = [];
 
-// Trạng thái sắp xếp (mặc định: dư nợ giảm dần)
-let sortKey = "duno";
-let sortAsc = false;
+// Trạng thái sắp xếp (null = thứ tự ban đầu: dư nợ giảm dần)
+let sortKey = null;
+let sortAsc = true;
 
 const TEXT_KEYS = ["ten", "diachi", "nvkd"];
 const DATE_KEYS = ["thanhtoan", "muahang"];
@@ -773,12 +773,17 @@ function buildNVKD() {
 // ================= BẤM TIÊU ĐỀ ĐỂ SẮP XẾP =================
 
 function setSort(key) {
-    if (sortKey === key) {
-        sortAsc = !sortAsc;
-    } else {
+    if (sortKey !== key) {
+        // Lần 1: A → Z (số: nhỏ → lớn)
         sortKey = key;
-        // Cột chữ: A→Z trước; cột số/ngày: lớn → nhỏ trước
-        sortAsc = TEXT_KEYS.includes(key);
+        sortAsc = true;
+    } else if (sortAsc) {
+        // Lần 2: Z → A (số: lớn → nhỏ)
+        sortAsc = false;
+    } else {
+        // Lần 3: trở về thứ tự ban đầu
+        sortKey = null;
+        sortAsc = false;
     }
     render();
 }
@@ -832,13 +837,17 @@ function render() {
             && (!overdueOnly || toNumber(r.tongqh) > 0);
     });
 
+    // Thứ tự ban đầu (chưa chọn cột nào): dư nợ giảm dần
+    const key = sortKey || "duno";
+    const asc = sortKey ? sortAsc : false;
+
     data.sort((a, b) => {
-        const x = sortValue(a, sortKey);
-        const y = sortValue(b, sortKey);
+        const x = sortValue(a, key);
+        const y = sortValue(b, key);
         let cmp;
         if (typeof x === "string") cmp = x.localeCompare(y, "vi");
         else cmp = x - y;
-        return sortAsc ? cmp : -cmp;
+        return asc ? cmp : -cmp;
     });
 
     let tongQH = 0;
