@@ -1,3 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tra cứu công nợ khách hàng</title>
+
+<style>
+body{
+    margin:0;
+    padding:15px;
+    font-family:Arial,sans-serif;
+    background:#f3f4f6;
+}
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+h1{
+    text-align:center;
+    color:#0f4c81;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.search-box{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+input,select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    min-width:250px;
+}
+
+.stats{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    flex:1;
+    min-width:220px;
+    background:#0f4c81;
+    color:#fff;
+    padding:15px;
+    border-radius:10px;
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#0f4c81;
+    color:white;
+    position:sticky;
+    top:0;
+}
+
+th,td{
+    padding:8px;
+    border:1px solid #ddd;
+    white-space:nowrap;
+}
+
+tr:hover{
+    background:#f2f7ff;
+    cursor:pointer;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+}
+
+.modal-content{
+    background:white;
+    max-width:700px;
+    margin:40px auto;
+    padding:20px;
+    border-radius:10px;
+}
+
+.close{
+    float:right;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.label{
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>TRA CỨU CÔNG NỢ KHÁCH HÀNG</h1>
+
+<div class="card">
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Tìm mã KH, tên KH, địa chỉ hoặc NVKD">
+
+<select id="nvkdFilter">
+<option value="">Tất cả NVKD</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div>Tổng khách hàng</div>
+<h2 id="tongkh">0</h2>
+</div>
+
+<div class="stat">
+<div>Tổng công nợ quá hạn</div>
+<h2 id="tongqh">0</h2>
+</div>
+
+<div class="stat">
+<div>Tổng dư nợ cuối ngày</div>
+<h2 id="tongdn">0</h2>
+</div>
+
+</div>
+
+<div class="card table-container">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Mã KH</th>
+<th>Tên khách hàng</th>
+<th>Địa chỉ</th>
+<th>NVKD</th>
+<th>QH 1T</th>
+<th>QH 2T</th>
+<th>QH 3T</th>
+<th>Tổng QH</th>
+<th>Dư nợ</th>
+<th>TT gần nhất</th>
+<th>Mua hàng gần nhất</th>
+</tr>
+
+</thead>
+
+<tbody id="dataBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">×</span>
+
+<div id="detail"></div>
+
+</div>
+
+</div>
+
 <script>
 
 let allData=[];
@@ -23,32 +221,26 @@ return new Intl.NumberFormat('vi-VN')
 
 }
 
-fetch('Congno.csv?v=' + Date.now())
+fetch('Congno.csv')
 
-.then(response => response.text())
+.then(r=>r.text())
 
-.then(text => {
+.then(text=>{
 
-text = text.replace(/^\uFEFF/,'');
+const rows=text
+.split('\n')
+.filter(x=>x.trim()!=='');
 
-const rows = text
-.split(/\r?\n/)
-.filter(x => x.trim() !== '');
+rows.forEach(row=>{
 
-rows.forEach(row => {
+const c=row.split(';');
 
-const c = row.split(';');
-
-if(c.length < 11) return;
-
-const firstCol = String(c[0]).trim().toUpperCase();
+if(c.length<11) return;
 
 if(
-firstCol.includes('MÃ KH') ||
-firstCol.includes('MA KH')
-){
-return;
-}
+c[0].includes('Mã KH') ||
+c[0].includes('M? KH')
+) return;
 
 allData.push({
 
@@ -65,6 +257,7 @@ tongqh:c[7]?.trim(),
 duno:c[8]?.trim(),
 
 thanhtoan:c[9]?.trim(),
+
 muahang:c[10]?.trim()
 
 });
@@ -72,21 +265,14 @@ muahang:c[10]?.trim()
 });
 
 buildNVKD();
+
 render();
-
-})
-
-.catch(error => {
-
-console.log(error);
-
-alert('Không đọc được file Congno.csv');
 
 });
 
 function buildNVKD(){
 
-const ds = [
+const ds=[
 ...new Set(
 allData
 .map(x=>x.nvkd)
@@ -94,21 +280,18 @@ allData
 )
 ];
 
-const select =
+const select=
 document.getElementById("nvkdFilter");
-
-select.innerHTML =
-'<option value="">Tất cả NVKD</option>';
 
 ds.sort();
 
 ds.forEach(x=>{
 
-const op =
+const op=
 document.createElement("option");
 
-op.value = x;
-op.textContent = x;
+op.value=x;
+op.textContent=x;
 
 select.appendChild(op);
 
@@ -118,27 +301,146 @@ select.appendChild(op);
 
 function render(){
 
-const keyword =
+const keyword=
 document
 .getElementById("searchInput")
 .value
 .toLowerCase();
 
-const nvkd =
+const nvkd=
 document
 .getElementById("nvkdFilter")
 .value;
 
-const body =
+const body=
 document.getElementById("dataBody");
 
-body.innerHTML = "";
+body.innerHTML="";
 
-const data =
+const data=
 allData.filter(r=>{
 
-const searchText = (
+const text=(
+r.ma+" "+
+r.ten+" "+
+r.diachi+" "+
+r.nvkd
+).toLowerCase();
 
-r.ma + " " +
-r.ten + " " +
-r.diachi + " "
+return text.includes(keyword)
+&&
+(!nvkd || r.nvkd===nvkd);
+
+});
+
+data.sort(
+(a,b)=>
+toNumber(b.duno)
+-
+toNumber(a.duno)
+);
+
+let tongQH=0;
+let tongDN=0;
+
+data.forEach(r=>{
+
+tongQH += toNumber(r.tongqh);
+tongDN += toNumber(r.duno);
+
+body.innerHTML +=`
+
+<tr onclick='showDetail(${JSON.stringify(r)})'>
+
+<td>${r.ma}</td>
+
+<td>${r.ten}</td>
+
+<td>${r.diachi}</td>
+
+<td>${r.nvkd}</td>
+
+<td>${r.qh1}</td>
+
+<td>${r.qh2}</td>
+
+<td>${r.qh3}</td>
+
+<td>${r.tongqh}</td>
+
+<td>${r.duno}</td>
+
+<td>${r.thanhtoan}</td>
+
+<td>${r.muahang}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("tongkh")
+.innerText=formatNumber(data.length);
+
+document.getElementById("tongqh")
+.innerText=formatNumber(tongQH);
+
+document.getElementById("tongdn")
+.innerText=formatNumber(tongDN);
+
+}
+
+document.addEventListener("input",render);
+
+document.addEventListener("change",render);
+
+function showDetail(r){
+
+document.getElementById("modal")
+.style.display="block";
+
+document.getElementById("detail")
+.innerHTML=`
+
+<h2>${r.ten}</h2>
+
+<p><span class="label">Mã KH:</span> ${r.ma}</p>
+
+<p><span class="label">Địa chỉ:</span> ${r.diachi}</p>
+
+<p><span class="label">NVKD:</span> ${r.nvkd}</p>
+
+<hr>
+
+<p><span class="label">Quá hạn 1 tháng:</span> ${r.qh1}</p>
+
+<p><span class="label">Quá hạn 2 tháng:</span> ${r.qh2}</p>
+
+<p><span class="label">Quá hạn 3 tháng:</span> ${r.qh3}</p>
+
+<p><span class="label">Tổng công nợ quá hạn:</span> ${r.tongqh}</p>
+
+<p><span class="label">Dư nợ cuối ngày:</span> ${r.duno}</p>
+
+<hr>
+
+<p><span class="label">Ngày thanh toán gần nhất:</span> ${r.thanhtoan}</p>
+
+<p><span class="label">Ngày mua hàng gần nhất:</span> ${r.muahang}</p>
+
+`;
+
+}
+
+function closeModal(){
+
+document.getElementById("modal")
+.style.display="none";
+
+}
+
+</script>
+
+</body>
+</html>
