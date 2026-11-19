@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -16,7 +15,7 @@
 
 body {
     margin: 0;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
     font-family: Arial, sans-serif;
     background: #f3f4f6;
     color: #222;
@@ -28,6 +27,17 @@ body {
     margin: auto;
 }
 
+/* ================= KHU VỰC GHIM ĐẦU TRANG ================= */
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: #f3f4f6;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
 /* ================= TIÊU ĐỀ ================= */
 
 h1 {
@@ -35,7 +45,10 @@ h1 {
     color: #0f4c81;
     font-size: 37px;
     font-weight: bold;
-    margin: 20px 0 25px;
+    margin: 5px 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ================= KHUNG ================= */
@@ -57,13 +70,17 @@ h1 {
 }
 
 input, select {
-    padding: 16px;
+    padding: 14px 16px;
     border: 1px solid #aaa;
     border-radius: 7px;
     min-width: 300px;
-    font-size: 24px;
+    font-size: 22px;
     background: white;
     color: #222;
+}
+
+#searchInput {
+    flex: 1;
 }
 
 /* ================= THỐNG KÊ ================= */
@@ -72,7 +89,7 @@ input, select {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
 }
 
 .stat {
@@ -80,28 +97,24 @@ input, select {
     min-width: 220px;
     background: #0f4c81;
     color: white;
-    padding: 20px;
+    padding: 16px 20px;
     border-radius: 10px;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .stat h2 {
-    font-size: 37px;
-    margin: 14px 0 5px;
+    font-size: 34px;
+    margin: 10px 0 2px;
     font-weight: bold;
 }
 
 /* ================= BẢNG DỮ LIỆU ================= */
 
-/*
-Không đặt overflow:auto cho khung bảng.
-Việc này giúp tiêu đề ghim theo màn hình khi cuộn trang.
-*/
-
 .table-container {
     overflow: visible;
     width: 100%;
+    padding-top: 0;
 }
 
 table {
@@ -113,17 +126,17 @@ table {
     background: white;
 }
 
-/* Ghim tiêu đề khi cuộn trang */
-
+/* Ghim tiêu đề bảng ngay dưới khu vực sticky-header */
 thead th {
     background: #0f4c81;
     color: white;
     position: sticky;
-    top: 0;
+    top: var(--sticky-offset, 290px); /* Tự động tính toán bằng JS */
     z-index: 100;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: bold;
-    text-align: center;
+    text-align: center !important;
+    vertical-align: middle;
     white-space: normal;
     box-shadow: 0 2px 3px rgba(0,0,0,.15);
 }
@@ -132,7 +145,7 @@ th, td {
     padding: 14px 12px;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    font-size: 24px;
+    font-size: 23px;
     line-height: 1.5;
     vertical-align: middle;
 }
@@ -149,62 +162,59 @@ thead th {
 }
 
 /* Tên khách hàng */
-
-th:nth-child(1),
 td:nth-child(1) {
     width: 190px;
     text-align: left;
     overflow-wrap: anywhere;
     word-break: normal;
 }
+th:nth-child(1) { width: 190px; }
 
 /* Địa chỉ */
-
-th:nth-child(2),
 td:nth-child(2) {
     width: 190px;
     text-align: left;
     overflow-wrap: anywhere;
     word-break: normal;
 }
+th:nth-child(2) { width: 190px; }
 
 /* NVKD */
-
-th:nth-child(3),
 td:nth-child(3) {
     width: 155px;
     text-align: center;
     overflow-wrap: anywhere;
 }
+th:nth-child(3) { width: 155px; }
 
 /* QH 1T, QH 2T, QH 3T */
-
-th:nth-child(4), td:nth-child(4),
-th:nth-child(5), td:nth-child(5),
-th:nth-child(6), td:nth-child(6) {
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6) {
     width: 125px;
     text-align: right;
     white-space: nowrap;
 }
+th:nth-child(4), th:nth-child(5), th:nth-child(6) { width: 125px; }
 
 /* Tổng QH và Dư nợ */
-
-th:nth-child(7), td:nth-child(7),
-th:nth-child(8), td:nth-child(8) {
+td:nth-child(7),
+td:nth-child(8) {
     width: 155px;
     text-align: right;
     white-space: nowrap;
     font-weight: bold;
 }
+th:nth-child(7), th:nth-child(8) { width: 155px; }
 
 /* Ngày thanh toán và mua hàng */
-
-th:nth-child(9), td:nth-child(9),
-th:nth-child(10), td:nth-child(10) {
+td:nth-child(9),
+td:nth-child(10) {
     width: 160px;
     text-align: center;
     white-space: nowrap;
 }
+th:nth-child(9), th:nth-child(10) { width: 160px; }
 
 /* Màu nền xen kẽ */
 
@@ -353,6 +363,16 @@ tbody tr:hover {
     margin: 20px 0;
 }
 
+.phone-link {
+    color: #0f4c81;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.phone-link:hover {
+    text-decoration: underline;
+}
+
 .close {
     float: right;
     font-size: 41px;
@@ -372,13 +392,19 @@ tbody tr:hover {
 @media (max-width: 768px) {
 
     body {
-        padding: 10px;
+        padding: 0 10px 10px 10px;
+    }
+
+    /* Trên điện thoại bỏ ghim cả khối lớn để không che mất màn hình */
+    .sticky-header {
+        position: static;
+        padding-top: 10px;
     }
 
     h1 {
-        font-size: 31px;
+        font-size: 29px;
         line-height: 1.4;
-        margin: 15px 0 20px;
+        margin: 10px 0 15px;
     }
 
     .card {
@@ -392,33 +418,31 @@ tbody tr:hover {
     input, select {
         width: 100%;
         min-width: 0;
-        padding: 16px;
-        font-size: 23px;
+        padding: 14px;
+        font-size: 21px;
     }
 
     .stats {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
 
     .stat {
         min-width: 0;
-        padding: 17px;
-        font-size: 23px;
+        padding: 15px;
+        font-size: 21px;
     }
 
     .stat h2 {
-        font-size: 33px;
+        font-size: 30px;
     }
 
     /* Ẩn bảng trên điện thoại */
-
     .table-container {
         display: none;
     }
 
     /* Hiện thẻ khách hàng */
-
     .mobile-list {
         display: block;
     }
@@ -454,11 +478,11 @@ tbody tr:hover {
     .modal-content {
         margin: 10px auto;
         padding: 20px;
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .modal-content h2 {
-        font-size: 28px;
+        font-size: 27px;
     }
 
 }
@@ -472,11 +496,11 @@ tbody tr:hover {
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 26px;
     }
 
     .stat h2 {
-        font-size: 30px;
+        font-size: 28px;
     }
 
 }
@@ -488,100 +512,99 @@ tbody tr:hover {
 
 <div class="container">
 
-<h1>TRA CỨU CÔNG NỢ KHÁCH HÀNG</h1>
+    <!-- KHU VỰC ĐƯỢC GHIM CỐ ĐỊNH KHI CUỘN -->
+    <div class="sticky-header" id="stickyHeader">
 
-<!-- TÌM KIẾM VÀ LỌC -->
+        <h1>TRA CỨU CÔNG NỢ KHÁCH HÀNG</h1>
 
-<div class="card">
+        <!-- TÌM KIẾM VÀ LỌC -->
+        <div class="card" style="margin-bottom: 12px;">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Tìm tên KH, mã KH, SĐT, địa chỉ hoặc NVKD">
 
-    <div class="search-box">
+                <select id="nvkdFilter">
+                    <option value="">Tất cả NVKD</option>
+                </select>
+            </div>
+        </div>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Tìm tên KH, mã KH, địa chỉ hoặc NVKD">
+        <!-- THỐNG KÊ -->
+        <div class="stats">
+            <div class="stat">
+                <div>Tổng khách hàng</div>
+                <h2 id="tongkh">0</h2>
+            </div>
 
-        <select id="nvkdFilter">
-            <option value="">Tất cả NVKD</option>
-        </select>
+            <div class="stat">
+                <div>Tổng công nợ quá hạn</div>
+                <h2 id="tongqh">0</h2>
+            </div>
+
+            <div class="stat">
+                <div>Tổng dư nợ cuối ngày</div>
+                <h2 id="tongdn">0</h2>
+            </div>
+        </div>
 
     </div>
 
-</div>
+    <!-- BẢNG MÁY TÍNH -->
+    <div class="card table-container">
 
-<!-- THỐNG KÊ -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên khách hàng</th>
+                    <th>Địa chỉ</th>
+                    <th>NVKD</th>
+                    <th>QH 1T</th>
+                    <th>QH 2T</th>
+                    <th>QH 3T</th>
+                    <th>Tổng QH</th>
+                    <th>Dư nợ</th>
+                    <th>TT gần nhất</th>
+                    <th>Mua hàng gần nhất</th>
+                </tr>
+            </thead>
+            <tbody id="dataBody"></tbody>
+        </table>
 
-<div class="stats">
+        <div id="emptyTable" class="empty-message" style="display:none">
+            Không tìm thấy khách hàng
+        </div>
 
-    <div class="stat">
-        <div>Tổng khách hàng</div>
-        <h2 id="tongkh">0</h2>
     </div>
 
-    <div class="stat">
-        <div>Tổng công nợ quá hạn</div>
-        <h2 id="tongqh">0</h2>
-    </div>
-
-    <div class="stat">
-        <div>Tổng dư nợ cuối ngày</div>
-        <h2 id="tongdn">0</h2>
-    </div>
-
-</div>
-
-<!-- BẢNG MÁY TÍNH -->
-
-<div class="card table-container">
-
-<table>
-
-<thead>
-<tr>
-    <th>Tên khách hàng</th>
-    <th>Địa chỉ</th>
-    <th>NVKD</th>
-    <th>QH 1T</th>
-    <th>QH 2T</th>
-    <th>QH 3T</th>
-    <th>Tổng QH</th>
-    <th>Dư nợ</th>
-    <th>TT gần nhất</th>
-    <th>Mua hàng gần nhất</th>
-</tr>
-</thead>
-
-<tbody id="dataBody"></tbody>
-
-</table>
-
-<div id="emptyTable" class="empty-message" style="display:none">
-    Không tìm thấy khách hàng
-</div>
-
-</div>
-
-<!-- DANH SÁCH ĐIỆN THOẠI -->
-
-<div class="mobile-list" id="mobileList"></div>
+    <!-- DANH SÁCH ĐIỆN THOẠI -->
+    <div class="mobile-list" id="mobileList"></div>
 
 </div>
 
 <!-- CHI TIẾT KHÁCH HÀNG -->
-
 <div class="modal" id="modal">
-
     <div class="modal-content">
-
         <span class="close" onclick="closeModal()">×</span>
-
         <div id="detail"></div>
-
     </div>
-
 </div>
 
 <script>
+
+// ================= TỰ ĐỘNG CÂN CHỈNH VỊ TRÍ GHIM TIÊU ĐỀ BẢNG =================
+
+function updateStickyOffset() {
+    const header = document.getElementById('stickyHeader');
+    if (header) {
+        const height = header.offsetHeight;
+        document.documentElement.style.setProperty('--sticky-offset', height + 'px');
+    }
+}
+
+window.addEventListener('load', updateStickyOffset);
+window.addEventListener('resize', updateStickyOffset);
 
 // ================= DỮ LIỆU =================
 
@@ -590,9 +613,7 @@ let allData = [];
 // ================= CHUYỂN ĐỔI SỐ =================
 
 function toNumber(value) {
-
     if (!value) return 0;
-
     return Number(
         String(value)
         .replace(/\./g, '')
@@ -600,41 +621,30 @@ function toNumber(value) {
         .replace(/-/g, '0')
         .trim()
     ) || 0;
-
 }
 
 // ================= ĐỊNH DẠNG SỐ =================
 
 function formatNumber(number) {
-
-    return new Intl.NumberFormat('vi-VN')
-        .format(number);
-
+    return new Intl.NumberFormat('vi-VN').format(number);
 }
 
 // ================= ĐỌC FILE CSV =================
 
 fetch('Congno.csv')
-
 .then(r => {
-
     if (!r.ok) {
         throw new Error('Không tìm thấy file Congno.csv');
     }
-
     return r.text();
-
 })
-
 .then(text => {
-
     const rows = text
         .replace(/^\uFEFF/, '')
         .split(/\r?\n/)
         .filter(x => x.trim() !== '');
 
     rows.forEach(row => {
-
         const c = row.split(';');
 
         if (c.length < 11) return;
@@ -644,8 +654,13 @@ fetch('Congno.csv')
             c[0].includes('M? KH')
         ) return;
 
+        /* 
+           LƯU Ý VỊ TRÍ CỘT SĐT:
+           Hiện tại đang lấy cột thứ 12 (c[11]) làm cột SĐT.
+           Nếu cột SĐT trong file CSV của bạn nằm ở vị trí khác, 
+           bạn hãy điều chỉnh lại số thứ tự c[...] tương ứng bên dưới.
+        */
         allData.push({
-
             ma: c[0]?.trim(),
             ten: c[1]?.trim(),
             diachi: c[2]?.trim(),
@@ -656,30 +671,25 @@ fetch('Congno.csv')
             tongqh: c[7]?.trim(),
             duno: c[8]?.trim(),
             thanhtoan: c[9]?.trim(),
-            muahang: c[10]?.trim()
-
+            muahang: c[10]?.trim(),
+            sdt: c[11]?.trim() || ""
         });
-
     });
 
     buildNVKD();
     render();
-
+    updateStickyOffset();
 })
-
 .catch(error => {
-
     document.getElementById("dataBody").innerHTML =
         `<tr><td colspan="10" style="text-align:center;color:red">
         Lỗi tải dữ liệu: ${error.message}
         </td></tr>`;
-
 });
 
 // ================= TẠO DANH SÁCH NVKD =================
 
 function buildNVKD() {
-
     const ds = [
         ...new Set(
             allData
@@ -688,28 +698,20 @@ function buildNVKD() {
         )
     ];
 
-    const select =
-        document.getElementById("nvkdFilter");
-
+    const select = document.getElementById("nvkdFilter");
     ds.sort();
 
     ds.forEach(x => {
-
         const op = document.createElement("option");
-
         op.value = x;
         op.textContent = x;
-
         select.appendChild(op);
-
     });
-
 }
 
 // ================= HIỂN THỊ DỮ LIỆU =================
 
 function render() {
-
     const keyword = document
         .getElementById("searchInput")
         .value
@@ -720,48 +722,37 @@ function render() {
         .getElementById("nvkdFilter")
         .value;
 
-    const body =
-        document.getElementById("dataBody");
-
-    const mobileList =
-        document.getElementById("mobileList");
+    const body = document.getElementById("dataBody");
+    const mobileList = document.getElementById("mobileList");
 
     body.innerHTML = "";
     mobileList.innerHTML = "";
 
     const data = allData.filter(r => {
-
         const text = (
             r.ma + " " +
             r.ten + " " +
             r.diachi + " " +
-            r.nvkd
+            r.nvkd + " " +
+            r.sdt
         ).toLowerCase();
 
         return text.includes(keyword)
             && (!nvkd || r.nvkd === nvkd);
-
     });
 
     // Sắp xếp dư nợ giảm dần
-
-    data.sort(
-        (a, b) =>
-            toNumber(b.duno) - toNumber(a.duno)
-    );
+    data.sort((a, b) => toNumber(b.duno) - toNumber(a.duno));
 
     let tongQH = 0;
     let tongDN = 0;
 
     data.forEach(r => {
-
         tongQH += toNumber(r.tongqh);
         tongDN += toNumber(r.duno);
 
         // BẢNG MÁY TÍNH
-
         const tr = document.createElement("tr");
-
         tr.onclick = () => showDetail(r);
 
         [
@@ -776,201 +767,129 @@ function render() {
             r.thanhtoan,
             r.muahang
         ].forEach(value => {
-
             const td = document.createElement("td");
-
             td.textContent = value || "";
-
             tr.appendChild(td);
-
         });
 
         body.appendChild(tr);
 
         // THẺ ĐIỆN THOẠI
-
         const card = document.createElement("div");
-
         card.className = "customer-card";
-
         card.onclick = () => showDetail(r);
 
         const name = document.createElement("div");
-
         name.className = "customer-name";
-
-        name.textContent =
-            r.ten || "Chưa có tên khách hàng";
-
+        name.textContent = r.ten || "Chưa có tên khách hàng";
         card.appendChild(name);
 
         addInfo(card, "Địa chỉ:", r.diachi);
         addInfo(card, "NVKD:", r.nvkd);
 
         const finance = document.createElement("div");
-
         finance.className = "customer-finance";
 
         addFinance(finance, "Quá hạn 1 tháng", r.qh1);
         addFinance(finance, "Quá hạn 2 tháng", r.qh2);
         addFinance(finance, "Quá hạn 3 tháng", r.qh3);
-
-        addFinance(
-            finance,
-            "Tổng quá hạn",
-            r.tongqh,
-            "finance-total"
-        );
-
-        addFinance(
-            finance,
-            "Dư nợ cuối ngày",
-            r.duno,
-            "finance-debt"
-        );
+        addFinance(finance, "Tổng quá hạn", r.tongqh, "finance-total");
+        addFinance(finance, "Dư nợ cuối ngày", r.duno, "finance-debt");
 
         card.appendChild(finance);
 
         const dates = document.createElement("div");
-
         dates.className = "customer-date";
 
         const tt = document.createElement("div");
-
-        tt.textContent =
-            "TT gần nhất: " + (r.thanhtoan || "");
+        tt.textContent = "TT gần nhất: " + (r.thanhtoan || "");
 
         const mh = document.createElement("div");
-
-        mh.textContent =
-            "Mua hàng gần nhất: " + (r.muahang || "");
+        mh.textContent = "Mua hàng gần nhất: " + (r.muahang || "");
 
         dates.appendChild(tt);
         dates.appendChild(mh);
-
         card.appendChild(dates);
 
         const hint = document.createElement("div");
-
         hint.style.cssText =
             "color:#0f4c81;font-size:19px;font-weight:bold;margin-top:14px;text-align:right";
-
         hint.textContent = "Bấm để xem chi tiết →";
-
         card.appendChild(hint);
 
         mobileList.appendChild(card);
-
     });
 
     // KHÔNG CÓ DỮ LIỆU
-
     document.getElementById("emptyTable")
         .style.display = data.length === 0 ? "block" : "none";
 
     if (data.length === 0) {
-
         const empty = document.createElement("div");
-
         empty.className = "empty-message";
-
         empty.textContent = "Không tìm thấy khách hàng";
-
         mobileList.appendChild(empty);
-
     }
 
     // CẬP NHẬT THỐNG KÊ
-
-    document.getElementById("tongkh")
-        .innerText = formatNumber(data.length);
-
-    document.getElementById("tongqh")
-        .innerText = formatNumber(tongQH);
-
-    document.getElementById("tongdn")
-        .innerText = formatNumber(tongDN);
-
+    document.getElementById("tongkh").innerText = formatNumber(data.length);
+    document.getElementById("tongqh").innerText = formatNumber(tongQH);
+    document.getElementById("tongdn").innerText = formatNumber(tongDN);
 }
 
 // ================= THÔNG TIN THẺ =================
 
 function addInfo(parent, label, value) {
-
     const div = document.createElement("div");
-
     div.className = "customer-info";
 
     const strong = document.createElement("strong");
-
     strong.textContent = label + " ";
-
     div.appendChild(strong);
 
-    div.appendChild(
-        document.createTextNode(value || "")
-    );
-
+    div.appendChild(document.createTextNode(value || ""));
     parent.appendChild(div);
-
 }
 
 // ================= Ô CÔNG NỢ =================
 
 function addFinance(parent, label, value, extraClass = "") {
-
     const item = document.createElement("div");
-
     item.className = "finance-item " + extraClass;
 
     const title = document.createElement("div");
-
     title.className = "finance-label";
-
     title.textContent = label;
 
     const number = document.createElement("div");
-
     number.className = "finance-value";
-
     number.textContent = value || "0";
 
     item.appendChild(title);
     item.appendChild(number);
-
     parent.appendChild(item);
-
 }
 
 // ================= TÌM KIẾM =================
 
-document.getElementById("searchInput")
-    .addEventListener("input", render);
-
-document.getElementById("nvkdFilter")
-    .addEventListener("change", render);
+document.getElementById("searchInput").addEventListener("input", render);
+document.getElementById("nvkdFilter").addEventListener("change", render);
 
 // ================= CHI TIẾT KHÁCH HÀNG =================
 
 function showDetail(r) {
+    document.getElementById("modal").style.display = "block";
 
-    document.getElementById("modal")
-        .style.display = "block";
-
-    const detail =
-        document.getElementById("detail");
-
+    const detail = document.getElementById("detail");
     detail.innerHTML = "";
 
     const h2 = document.createElement("h2");
-
     h2.textContent = r.ten;
-
     detail.appendChild(h2);
 
     const fields = [
-
         ["Mã KH:", r.ma],
+        ["Số điện thoại:", r.sdt, true], // Đánh dấu là SĐT để tạo link gọi
         ["Địa chỉ:", r.diachi],
         ["NVKD:", r.nvkd],
         ["Quá hạn 1 tháng:", r.qh1],
@@ -980,65 +899,51 @@ function showDetail(r) {
         ["Dư nợ cuối ngày:", r.duno],
         ["Ngày thanh toán gần nhất:", r.thanhtoan],
         ["Ngày mua hàng gần nhất:", r.muahang]
-
     ];
 
     fields.forEach((item, index) => {
-
-        if (index === 3 || index === 8) {
-            detail.appendChild(
-                document.createElement("hr")
-            );
+        if (index === 4 || index === 9) {
+            detail.appendChild(document.createElement("hr"));
         }
 
         const p = document.createElement("p");
-
         const label = document.createElement("span");
-
         label.className = "label";
-
         label.textContent = item[0] + " ";
-
         p.appendChild(label);
 
-        p.appendChild(
-            document.createTextNode(item[1] || "")
-        );
+        if (item[2] && item[1]) {
+            const link = document.createElement("a");
+            link.href = "tel:" + item[1].replace(/\s+/g, '');
+            link.className = "phone-link";
+            link.textContent = item[1];
+            p.appendChild(link);
+        } else {
+            p.appendChild(document.createTextNode(item[1] || "Chưa cập nhật"));
+        }
 
         detail.appendChild(p);
-
     });
-
 }
 
 // ================= ĐÓNG CHI TIẾT =================
 
 function closeModal() {
-
-    document.getElementById("modal")
-        .style.display = "none";
-
+    document.getElementById("modal").style.display = "none";
 }
 
 // Bấm ra ngoài để đóng
-
-document.getElementById("modal")
-    .addEventListener("click", function(e) {
-
-        if (e.target === this) {
-            closeModal();
-        }
-
-    });
+document.getElementById("modal").addEventListener("click", function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
 
 // Nhấn ESC để đóng
-
 document.addEventListener("keydown", function(e) {
-
     if (e.key === "Escape") {
         closeModal();
     }
-
 });
 
 </script>
