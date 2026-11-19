@@ -1,105 +1,144 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tra cứu công nợ khách hàng</title>
+<script>
 
-<style>
-body{
-    font-family: Arial,sans-serif;
-    margin:0;
-    padding:20px;
-    background:#f5f5f5;
-}
-.container{
-    max-width:1200px;
-    margin:auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.1);
-}
-h1{
-    text-align:center;
-    color:#0066cc;
-}
-.controls{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:15px;
-}
-input,select{
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-th{
-    background:#0066cc;
-    color:white;
-    padding:10px;
-}
-td{
-    border:1px solid #ddd;
-    padding:8px;
-}
-tr:nth-child(even){
-    background:#f9f9f9;
-}
-</style>
-</head>
+let allData=[];
 
-<body>
+function toNumber(value){
 
-<div class="container">
-<h1>Tra cứu công nợ khách hàng</h1>
+if(!value) return 0;
 
-<div class="controls">
-<input type="text" id="search" placeholder="Tìm mã hoặc tên khách hàng">
-<select id="nvkd">
-    <option>Tất cả NVKD</option>
-    <option>Nguyễn Văn Thông</option>
-    <option>Nguyễn Hữu Minh</option>
-    <option>Nguyễn Thành Trung</option>
-</select>
-</div>
+return Number(
+String(value)
+.replace(/\./g,'')
+.replace(/,/g,'')
+.replace(/-/g,'0')
+.trim()
+)||0;
 
-<table>
-<thead>
-<tr>
-<th>Mã KH</th>
-<th>Tên khách hàng</th>
-<th>NVKD</th>
-<th>Cộng quá hạn</th>
-<th>Dư nợ cuối ngày</th>
-</tr>
-</thead>
+}
 
-<tbody>
-<tr>
-<td>KH001</td>
-<td>Công ty ABC</td>
-<td>Nguyễn Văn Thông</td>
-<td>20.000.000</td>
-<td>150.000.000</td>
-</tr>
+function formatNumber(number){
 
-<tr>
-<td>KH002</td>
-<td>Công ty XYZ</td>
-<td>Nguyễn Hữu Minh</td>
-<td>0</td>
-<td>85.000.000</td>
-</tr>
-</tbody>
-</table>
+return new Intl.NumberFormat('vi-VN')
+.format(number);
 
-</div>
+}
 
-</body>
-</html>
+fetch('Congno.csv?v=' + Date.now())
+
+.then(response => response.text())
+
+.then(text => {
+
+text = text.replace(/^\uFEFF/,'');
+
+const rows = text
+.split(/\r?\n/)
+.filter(x => x.trim() !== '');
+
+rows.forEach(row => {
+
+const c = row.split(';');
+
+if(c.length < 11) return;
+
+const firstCol = String(c[0]).trim().toUpperCase();
+
+if(
+firstCol.includes('MÃ KH') ||
+firstCol.includes('MA KH')
+){
+return;
+}
+
+allData.push({
+
+ma:c[0]?.trim(),
+ten:c[1]?.trim(),
+diachi:c[2]?.trim(),
+nvkd:c[3]?.trim(),
+
+qh1:c[4]?.trim(),
+qh2:c[5]?.trim(),
+qh3:c[6]?.trim(),
+
+tongqh:c[7]?.trim(),
+duno:c[8]?.trim(),
+
+thanhtoan:c[9]?.trim(),
+muahang:c[10]?.trim()
+
+});
+
+});
+
+buildNVKD();
+render();
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+alert('Không đọc được file Congno.csv');
+
+});
+
+function buildNVKD(){
+
+const ds = [
+...new Set(
+allData
+.map(x=>x.nvkd)
+.filter(x=>x)
+)
+];
+
+const select =
+document.getElementById("nvkdFilter");
+
+select.innerHTML =
+'<option value="">Tất cả NVKD</option>';
+
+ds.sort();
+
+ds.forEach(x=>{
+
+const op =
+document.createElement("option");
+
+op.value = x;
+op.textContent = x;
+
+select.appendChild(op);
+
+});
+
+}
+
+function render(){
+
+const keyword =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const nvkd =
+document
+.getElementById("nvkdFilter")
+.value;
+
+const body =
+document.getElementById("dataBody");
+
+body.innerHTML = "";
+
+const data =
+allData.filter(r=>{
+
+const searchText = (
+
+r.ma + " " +
+r.ten + " " +
+r.diachi + " "
