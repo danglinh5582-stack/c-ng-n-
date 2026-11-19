@@ -1706,6 +1706,9 @@ async function shareZalo() {
     if (!reconState.blob) return;
     const file = new File([reconState.blob], reconState.fileName, { type: "image/png" });
 
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    let errName = "";
+
     // Điện thoại: mở bảng chia sẻ của máy, chọn Zalo
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
@@ -1713,7 +1716,17 @@ async function shareZalo() {
             return;
         } catch (e) {
             if (e && e.name === "AbortError") return;
+            errName = (e && e.name) || "";
         }
+    }
+
+    // Điện thoại nhưng trình duyệt không chia sẻ được ảnh: chỉ tải ảnh về,
+    // không mở web Zalo (web Zalo sẽ bắt tải app trên điện thoại)
+    if (isMobile) {
+        downloadRecon();
+        showToast("Trình duyệt này không mở được bảng chia sẻ" + (errName ? " (" + errName + ")" : "") +
+            ". Đã tải ảnh về máy: hãy mở Zalo, chọn khách rồi gửi ảnh vừa tải trong thư viện ảnh.");
+        return;
     }
 
     // Máy tính: mở Zalo web, copy ảnh vào bộ nhớ tạm và tải ảnh về
