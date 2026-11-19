@@ -3,62 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Công nợ khách hàng</title>
+<title>Tra cứu công nợ khách hàng</title>
 
 <style>
 body{
-    font-family: Arial, sans-serif;
+    font-family: Arial,sans-serif;
     margin:0;
     padding:20px;
     background:#f5f5f5;
 }
 .container{
-    max-width:800px;
+    max-width:1200px;
     margin:auto;
     background:white;
     padding:20px;
     border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 h1{
     text-align:center;
     color:#0066cc;
 }
+.controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+input,select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
 table{
     width:100%;
     border-collapse:collapse;
 }
-th,td{
-    border:1px solid #ddd;
-    padding:8px;
-    text-align:left;
-}
 th{
     background:#0066cc;
     color:white;
+    padding:10px;
+}
+td{
+    border:1px solid #ddd;
+    padding:8px;
+}
+tr:nth-child(even){
+    background:#f9f9f9;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-    <h1>Báo cáo công nợ</h1>
 
-    <table>
-        <tr>
-            <th>Khách hàng</th>
-            <th>Công nợ</th>
-        </tr>
-        <tr>
-            <td>Khách hàng A</td>
-            <td>100.000.000</td>
-        </tr>
-        <tr>
-            <td>Khách hàng B</td>
-            <td>50.000.000</td>
-        </tr>
-    </table>
+<div class="container">
+<h1>Tra cứu công nợ khách hàng</h1>
+
+<div class="controls">
+<input type="text" id="search" placeholder="Tìm mã hoặc tên khách hàng">
+<select id="nvkd">
+    <option>Tất cả NVKD</option>
+    <option>Nguyễn Văn Thông</option>
+    <option>Nguyễn Hữu Minh</option>
+    <option>Nguyễn Thành Trung</option>
+</select>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Mã KH</th>
+<th>Tên khách hàng</th>
+<th>NVKD</th>
+<th>Cộng quá hạn</th>
+<th>Dư nợ cuối ngày</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>KH001</td>
+<td>Công ty ABC</td>
+<td>Nguyễn Văn Thông</td>
+<td>20.000.000</td>
+<td>150.000.000</td>
+</tr>
+
+<tr>
+<td>KH002</td>
+<td>Công ty XYZ</td>
+<td>Nguyễn Hữu Minh</td>
+<td>0</td>
+<td>85.000.000</td>
+</tr>
+</tbody>
+</table>
 
 </div>
+
 </body>
 </html>
