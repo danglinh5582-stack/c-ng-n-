@@ -33,7 +33,7 @@ body {
 h1 {
     text-align: center;
     color: #0f4c81;
-    font-size: 32px;
+    font-size: 37px;
     font-weight: bold;
     margin: 20px 0 25px;
 }
@@ -42,7 +42,7 @@ h1 {
 
 .card {
     background: white;
-    padding: 16px;
+    padding: 18px;
     border-radius: 10px;
     margin-bottom: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
@@ -57,11 +57,11 @@ h1 {
 }
 
 input, select {
-    padding: 15px;
+    padding: 16px;
     border: 1px solid #aaa;
     border-radius: 7px;
-    min-width: 280px;
-    font-size: 19px;
+    min-width: 300px;
+    font-size: 24px;
     background: white;
     color: #222;
 }
@@ -80,50 +80,72 @@ input, select {
     min-width: 220px;
     background: #0f4c81;
     color: white;
-    padding: 18px;
+    padding: 20px;
     border-radius: 10px;
-    font-size: 19px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .stat h2 {
-    font-size: 32px;
-    margin: 12px 0 5px;
+    font-size: 37px;
+    margin: 14px 0 5px;
     font-weight: bold;
 }
 
-/* ================= BẢNG DỮ LIỆU MÁY TÍNH ================= */
+/* ================= BẢNG DỮ LIỆU ================= */
+
+/*
+Không đặt overflow:auto cho khung bảng.
+Việc này giúp tiêu đề ghim theo màn hình khi cuộn trang.
+*/
 
 .table-container {
-    overflow-x: auto;
+    overflow: visible;
     width: 100%;
 }
 
 table {
     width: 100%;
     min-width: 1500px;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     table-layout: fixed;
     background: white;
 }
 
-th {
+/* Ghim tiêu đề khi cuộn trang */
+
+thead th {
     background: #0f4c81;
     color: white;
     position: sticky;
     top: 0;
-    font-size: 19px;
+    z-index: 100;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     white-space: normal;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
 }
 
 th, td {
-    padding: 12px 10px;
-    border: 1px solid #ccc;
-    font-size: 19px;
+    padding: 14px 12px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size: 24px;
     line-height: 1.5;
     vertical-align: middle;
+}
+
+/* Viền trái và trên bảng */
+
+th:first-child,
+td:first-child {
+    border-left: 1px solid #ccc;
+}
+
+thead th {
+    border-top: 1px solid #ccc;
 }
 
 /* Tên khách hàng */
@@ -184,14 +206,14 @@ th:nth-child(10), td:nth-child(10) {
     white-space: nowrap;
 }
 
-/* Hiệu ứng dòng */
+/* Màu nền xen kẽ */
 
 tbody tr:nth-child(even) {
-    background: #f5f8fc;
+    background: #f0f5fb;
 }
 
 tbody tr:hover {
-    background: #e1efff;
+    background: #dcecff;
     cursor: pointer;
 }
 
@@ -200,7 +222,7 @@ tbody tr:hover {
 .empty-message {
     text-align: center;
     padding: 30px;
-    font-size: 20px;
+    font-size: 25px;
     color: #666;
 }
 
@@ -213,26 +235,26 @@ tbody tr:hover {
 .customer-card {
     background: white;
     border-radius: 12px;
-    padding: 17px;
-    margin-bottom: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 6px rgba(0,0,0,.08);
     cursor: pointer;
 }
 
 .customer-name {
-    font-size: 21px;
+    font-size: 26px;
     font-weight: bold;
     color: #0f4c81;
-    line-height: 1.45;
-    margin-bottom: 12px;
+    line-height: 1.5;
+    margin-bottom: 14px;
     overflow-wrap: anywhere;
 }
 
 .customer-info {
-    font-size: 18px;
+    font-size: 23px;
     line-height: 1.6;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
     overflow-wrap: anywhere;
 }
 
@@ -243,25 +265,25 @@ tbody tr:hover {
 .customer-finance {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 14px;
+    gap: 12px;
+    margin-top: 16px;
 }
 
 .finance-item {
     background: #f1f5fa;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
     min-width: 0;
 }
 
 .finance-label {
-    font-size: 16px;
+    font-size: 21px;
     color: #555;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 .finance-value {
-    font-size: 19px;
+    font-size: 24px;
     font-weight: bold;
     color: #222;
     overflow-wrap: anywhere;
@@ -285,13 +307,13 @@ tbody tr:hover {
 
 .customer-date {
     border-top: 1px solid #ddd;
-    margin-top: 13px;
-    padding-top: 10px;
-    font-size: 17px;
+    margin-top: 15px;
+    padding-top: 12px;
+    font-size: 22px;
     line-height: 1.7;
 }
 
-/* ================= CỬA SỔ CHI TIẾT ================= */
+/* ================= CHI TIẾT KHÁCH HÀNG ================= */
 
 .modal {
     display: none;
@@ -305,35 +327,35 @@ tbody tr:hover {
 
 .modal-content {
     background: white;
-    max-width: 750px;
+    max-width: 800px;
     width: 100%;
     margin: 30px auto;
-    padding: 25px;
+    padding: 28px;
     border-radius: 12px;
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: 25px;
+    line-height: 1.7;
 }
 
 .modal-content h2 {
-    font-size: 27px;
+    font-size: 32px;
     color: #0f4c81;
     margin-top: 10px;
 }
 
 .modal-content p {
-    margin: 12px 0;
+    margin: 14px 0;
     overflow-wrap: anywhere;
 }
 
 .modal-content hr {
     border: 0;
     border-top: 1px solid #ddd;
-    margin: 18px 0;
+    margin: 20px 0;
 }
 
 .close {
     float: right;
-    font-size: 36px;
+    font-size: 41px;
     font-weight: bold;
     cursor: pointer;
     color: #555;
@@ -354,13 +376,13 @@ tbody tr:hover {
     }
 
     h1 {
-        font-size: 26px;
+        font-size: 31px;
         line-height: 1.4;
         margin: 15px 0 20px;
     }
 
     .card {
-        padding: 12px;
+        padding: 14px;
     }
 
     .search-box {
@@ -370,23 +392,23 @@ tbody tr:hover {
     input, select {
         width: 100%;
         min-width: 0;
-        padding: 15px;
-        font-size: 18px;
+        padding: 16px;
+        font-size: 23px;
     }
 
     .stats {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
 
     .stat {
         min-width: 0;
-        padding: 15px;
-        font-size: 18px;
+        padding: 17px;
+        font-size: 23px;
     }
 
     .stat h2 {
-        font-size: 28px;
+        font-size: 33px;
     }
 
     /* Ẩn bảng trên điện thoại */
@@ -395,30 +417,34 @@ tbody tr:hover {
         display: none;
     }
 
-    /* Hiện danh sách thẻ khách hàng */
+    /* Hiện thẻ khách hàng */
 
     .mobile-list {
         display: block;
     }
 
+    .customer-card {
+        padding: 18px;
+    }
+
     .customer-name {
-        font-size: 20px;
+        font-size: 26px;
     }
 
     .customer-info {
-        font-size: 18px;
+        font-size: 23px;
     }
 
     .finance-label {
-        font-size: 15px;
+        font-size: 20px;
     }
 
     .finance-value {
-        font-size: 18px;
+        font-size: 23px;
     }
 
     .customer-date {
-        font-size: 16px;
+        font-size: 21px;
     }
 
     .modal {
@@ -427,17 +453,17 @@ tbody tr:hover {
 
     .modal-content {
         margin: 10px auto;
-        padding: 18px;
-        font-size: 19px;
+        padding: 20px;
+        font-size: 24px;
     }
 
     .modal-content h2 {
-        font-size: 23px;
+        font-size: 28px;
     }
 
 }
 
-/* ================= ĐIỆN THOẠI MÀN HÌNH RẤT NHỎ ================= */
+/* ================= ĐIỆN THOẠI MÀN HÌNH NHỎ ================= */
 
 @media (max-width: 380px) {
 
@@ -446,11 +472,11 @@ tbody tr:hover {
     }
 
     h1 {
-        font-size: 23px;
+        font-size: 28px;
     }
 
     .stat h2 {
-        font-size: 25px;
+        font-size: 30px;
     }
 
 }
@@ -476,9 +502,7 @@ tbody tr:hover {
             placeholder="Tìm tên KH, mã KH, địa chỉ hoặc NVKD">
 
         <select id="nvkdFilter">
-
             <option value="">Tất cả NVKD</option>
-
         </select>
 
     </div>
@@ -490,63 +514,41 @@ tbody tr:hover {
 <div class="stats">
 
     <div class="stat">
-
         <div>Tổng khách hàng</div>
-
         <h2 id="tongkh">0</h2>
-
     </div>
 
     <div class="stat">
-
         <div>Tổng công nợ quá hạn</div>
-
         <h2 id="tongqh">0</h2>
-
     </div>
 
     <div class="stat">
-
         <div>Tổng dư nợ cuối ngày</div>
-
         <h2 id="tongdn">0</h2>
-
     </div>
 
 </div>
 
-<!-- BẢNG DỮ LIỆU MÁY TÍNH -->
+<!-- BẢNG MÁY TÍNH -->
 
 <div class="card table-container">
 
 <table>
 
 <thead>
-
 <tr>
-
     <th>Tên khách hàng</th>
-
     <th>Địa chỉ</th>
-
     <th>NVKD</th>
-
     <th>QH 1T</th>
-
     <th>QH 2T</th>
-
     <th>QH 3T</th>
-
     <th>Tổng QH</th>
-
     <th>Dư nợ</th>
-
     <th>TT gần nhất</th>
-
     <th>Mua hàng gần nhất</th>
-
 </tr>
-
 </thead>
 
 <tbody id="dataBody"></tbody>
@@ -559,13 +561,13 @@ tbody tr:hover {
 
 </div>
 
-<!-- DANH SÁCH RIÊNG CHO ĐIỆN THOẠI -->
+<!-- DANH SÁCH ĐIỆN THOẠI -->
 
 <div class="mobile-list" id="mobileList"></div>
 
 </div>
 
-<!-- CỬA SỔ CHI TIẾT KHÁCH HÀNG -->
+<!-- CHI TIẾT KHÁCH HÀNG -->
 
 <div class="modal" id="modal">
 
@@ -592,13 +594,11 @@ function toNumber(value) {
     if (!value) return 0;
 
     return Number(
-
         String(value)
         .replace(/\./g, '')
         .replace(/,/g, '')
         .replace(/-/g, '0')
         .trim()
-
     ) || 0;
 
 }
@@ -619,9 +619,7 @@ fetch('Congno.csv')
 .then(r => {
 
     if (!r.ok) {
-
         throw new Error('Không tìm thấy file Congno.csv');
-
     }
 
     return r.text();
@@ -665,7 +663,6 @@ fetch('Congno.csv')
     });
 
     buildNVKD();
-
     render();
 
 })
@@ -684,15 +681,11 @@ fetch('Congno.csv')
 function buildNVKD() {
 
     const ds = [
-
         ...new Set(
-
             allData
             .map(x => x.nvkd)
             .filter(x => x)
-
         )
-
     ];
 
     const select =
@@ -705,7 +698,6 @@ function buildNVKD() {
         const op = document.createElement("option");
 
         op.value = x;
-
         op.textContent = x;
 
         select.appendChild(op);
@@ -735,18 +727,15 @@ function render() {
         document.getElementById("mobileList");
 
     body.innerHTML = "";
-
     mobileList.innerHTML = "";
 
     const data = allData.filter(r => {
 
         const text = (
-
             r.ma + " " +
             r.ten + " " +
             r.diachi + " " +
             r.nvkd
-
         ).toLowerCase();
 
         return text.includes(keyword)
@@ -757,32 +746,25 @@ function render() {
     // Sắp xếp dư nợ giảm dần
 
     data.sort(
-
         (a, b) =>
             toNumber(b.duno) - toNumber(a.duno)
-
     );
 
     let tongQH = 0;
-
     let tongDN = 0;
-
-    // ================= LẶP TỪNG KHÁCH HÀNG =================
 
     data.forEach(r => {
 
         tongQH += toNumber(r.tongqh);
-
         tongDN += toNumber(r.duno);
 
-        // ----- BẢNG MÁY TÍNH -----
+        // BẢNG MÁY TÍNH
 
         const tr = document.createElement("tr");
 
         tr.onclick = () => showDetail(r);
 
         [
-
             r.ten,
             r.diachi,
             r.nvkd,
@@ -793,7 +775,6 @@ function render() {
             r.duno,
             r.thanhtoan,
             r.muahang
-
         ].forEach(value => {
 
             const td = document.createElement("td");
@@ -806,7 +787,7 @@ function render() {
 
         body.appendChild(tr);
 
-        // ----- THẺ ĐIỆN THOẠI -----
+        // THẺ ĐIỆN THOẠI
 
         const card = document.createElement("div");
 
@@ -818,35 +799,37 @@ function render() {
 
         name.className = "customer-name";
 
-        name.textContent = r.ten || "Chưa có tên khách hàng";
+        name.textContent =
+            r.ten || "Chưa có tên khách hàng";
 
         card.appendChild(name);
 
-        // Địa chỉ và NVKD
-
         addInfo(card, "Địa chỉ:", r.diachi);
-
         addInfo(card, "NVKD:", r.nvkd);
-
-        // Các chỉ tiêu công nợ
 
         const finance = document.createElement("div");
 
         finance.className = "customer-finance";
 
         addFinance(finance, "Quá hạn 1 tháng", r.qh1);
-
         addFinance(finance, "Quá hạn 2 tháng", r.qh2);
-
         addFinance(finance, "Quá hạn 3 tháng", r.qh3);
 
-        addFinance(finance, "Tổng quá hạn", r.tongqh, "finance-total");
+        addFinance(
+            finance,
+            "Tổng quá hạn",
+            r.tongqh,
+            "finance-total"
+        );
 
-        addFinance(finance, "Dư nợ cuối ngày", r.duno, "finance-debt");
+        addFinance(
+            finance,
+            "Dư nợ cuối ngày",
+            r.duno,
+            "finance-debt"
+        );
 
         card.appendChild(finance);
-
-        // Ngày thanh toán và mua hàng
 
         const dates = document.createElement("div");
 
@@ -863,17 +846,14 @@ function render() {
             "Mua hàng gần nhất: " + (r.muahang || "");
 
         dates.appendChild(tt);
-
         dates.appendChild(mh);
 
         card.appendChild(dates);
 
-        // Gợi ý bấm xem chi tiết
-
         const hint = document.createElement("div");
 
         hint.style.cssText =
-            "color:#0f4c81;font-size:16px;font-weight:bold;margin-top:12px;text-align:right";
+            "color:#0f4c81;font-size:19px;font-weight:bold;margin-top:14px;text-align:right";
 
         hint.textContent = "Bấm để xem chi tiết →";
 
@@ -883,7 +863,7 @@ function render() {
 
     });
 
-    // Thông báo khi không có kết quả
+    // KHÔNG CÓ DỮ LIỆU
 
     document.getElementById("emptyTable")
         .style.display = data.length === 0 ? "block" : "none";
@@ -900,7 +880,7 @@ function render() {
 
     }
 
-    // ================= CẬP NHẬT THỐNG KÊ =================
+    // CẬP NHẬT THỐNG KÊ
 
     document.getElementById("tongkh")
         .innerText = formatNumber(data.length);
@@ -913,7 +893,7 @@ function render() {
 
 }
 
-// ================= TẠO THÔNG TIN THẺ =================
+// ================= THÔNG TIN THẺ =================
 
 function addInfo(parent, label, value) {
 
@@ -935,7 +915,7 @@ function addInfo(parent, label, value) {
 
 }
 
-// ================= TẠO Ô CÔNG NỢ =================
+// ================= Ô CÔNG NỢ =================
 
 function addFinance(parent, label, value, extraClass = "") {
 
@@ -956,7 +936,6 @@ function addFinance(parent, label, value, extraClass = "") {
     number.textContent = value || "0";
 
     item.appendChild(title);
-
     item.appendChild(number);
 
     parent.appendChild(item);
@@ -1007,11 +986,9 @@ function showDetail(r) {
     fields.forEach((item, index) => {
 
         if (index === 3 || index === 8) {
-
             detail.appendChild(
                 document.createElement("hr")
             );
-
         }
 
         const p = document.createElement("p");
@@ -1043,15 +1020,13 @@ function closeModal() {
 
 }
 
-// Bấm ra ngoài cửa sổ để đóng
+// Bấm ra ngoài để đóng
 
 document.getElementById("modal")
     .addEventListener("click", function(e) {
 
         if (e.target === this) {
-
             closeModal();
-
         }
 
     });
@@ -1061,9 +1036,7 @@ document.getElementById("modal")
 document.addEventListener("keydown", function(e) {
 
     if (e.key === "Escape") {
-
         closeModal();
-
     }
 
 });
