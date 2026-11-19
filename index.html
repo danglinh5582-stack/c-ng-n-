@@ -1,4 +1,12 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tra cứu công nợ khách hàng</title>
+
+<style>
 body {
     margin: 0;
     padding: 15px;
@@ -89,25 +97,29 @@ td {
     overflow-wrap: anywhere;
 }
 
-/* Các cột tự động theo nội dung */
+/* Mã khách hàng */
 th:nth-child(1), td:nth-child(1) {
     width: 100px;
     white-space: nowrap;
 }
 
+/* Tên khách hàng */
 th:nth-child(2), td:nth-child(2) {
     min-width: 200px;
 }
 
+/* Địa chỉ */
 th:nth-child(3), td:nth-child(3) {
     min-width: 220px;
 }
 
+/* Nhân viên kinh doanh */
 th:nth-child(4), td:nth-child(4) {
     width: 130px;
     white-space: nowrap;
 }
 
+/* Các cột quá hạn */
 th:nth-child(5), td:nth-child(5),
 th:nth-child(6), td:nth-child(6),
 th:nth-child(7), td:nth-child(7) {
@@ -116,6 +128,7 @@ th:nth-child(7), td:nth-child(7) {
     white-space: nowrap;
 }
 
+/* Tổng quá hạn và dư nợ */
 th:nth-child(8), td:nth-child(8),
 th:nth-child(9), td:nth-child(9) {
     width: 125px;
@@ -124,6 +137,7 @@ th:nth-child(9), td:nth-child(9) {
     font-weight: bold;
 }
 
+/* Ngày thanh toán và mua hàng */
 th:nth-child(10), td:nth-child(10),
 th:nth-child(11), td:nth-child(11) {
     width: 145px;
@@ -163,3 +177,366 @@ tr:hover {
 .label {
     font-weight: bold;
 }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>TRA CỨU CÔNG NỢ KHÁCH HÀNG</h1>
+
+<div class="card">
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm mã KH, tên KH, địa chỉ hoặc NVKD">
+
+        <select id="nvkdFilter">
+            <option value="">Tất cả NVKD</option>
+        </select>
+
+    </div>
+</div>
+
+<div class="stats">
+
+    <div class="stat">
+        <div>Tổng khách hàng</div>
+        <h2 id="tongkh">0</h2>
+    </div>
+
+    <div class="stat">
+        <div>Tổng công nợ quá hạn</div>
+        <h2 id="tongqh">0</h2>
+    </div>
+
+    <div class="stat">
+        <div>Tổng dư nợ cuối ngày</div>
+        <h2 id="tongdn">0</h2>
+    </div>
+
+</div>
+
+<div class="card table-container">
+
+<table>
+
+<thead>
+<tr>
+    <th>Mã KH</th>
+    <th>Tên khách hàng</th>
+    <th>Địa chỉ</th>
+    <th>NVKD</th>
+    <th>QH 1T</th>
+    <th>QH 2T</th>
+    <th>QH 3T</th>
+    <th>Tổng QH</th>
+    <th>Dư nợ</th>
+    <th>TT gần nhất</th>
+    <th>Mua hàng gần nhất</th>
+</tr>
+</thead>
+
+<tbody id="dataBody"></tbody>
+
+</table>
+</div>
+</div>
+
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">×</span>
+
+        <div id="detail"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+let allData = [];
+
+function toNumber(value) {
+
+    if (!value) return 0;
+
+    return Number(
+        String(value)
+        .replace(/\./g, '')
+        .replace(/,/g, '')
+        .replace(/-/g, '0')
+        .trim()
+    ) || 0;
+
+}
+
+function formatNumber(number) {
+
+    return new Intl.NumberFormat('vi-VN')
+        .format(number);
+
+}
+
+fetch('Congno.csv')
+
+.then(r => {
+
+    if (!r.ok) {
+        throw new Error('Không tìm thấy file Congno.csv');
+    }
+
+    return r.text();
+
+})
+
+.then(text => {
+
+    const rows = text
+        .replace(/^\uFEFF/, '')
+        .split(/\r?\n/)
+        .filter(x => x.trim() !== '');
+
+    rows.forEach(row => {
+
+        const c = row.split(';');
+
+        if (c.length < 11) return;
+
+        if (
+            c[0].includes('Mã KH') ||
+            c[0].includes('M? KH')
+        ) return;
+
+        allData.push({
+
+            ma: c[0]?.trim(),
+            ten: c[1]?.trim(),
+            diachi: c[2]?.trim(),
+            nvkd: c[3]?.trim(),
+            qh1: c[4]?.trim(),
+            qh2: c[5]?.trim(),
+            qh3: c[6]?.trim(),
+            tongqh: c[7]?.trim(),
+            duno: c[8]?.trim(),
+            thanhtoan: c[9]?.trim(),
+            muahang: c[10]?.trim()
+
+        });
+
+    });
+
+    buildNVKD();
+    render();
+
+})
+
+.catch(error => {
+
+    alert('Lỗi tải dữ liệu: ' + error.message);
+
+});
+
+function buildNVKD() {
+
+    const ds = [
+
+        ...new Set(
+
+            allData
+            .map(x => x.nvkd)
+            .filter(x => x)
+
+        )
+
+    ];
+
+    const select =
+        document.getElementById("nvkdFilter");
+
+    ds.sort();
+
+    ds.forEach(x => {
+
+        const op =
+            document.createElement("option");
+
+        op.value = x;
+        op.textContent = x;
+
+        select.appendChild(op);
+
+    });
+
+}
+
+function render() {
+
+    const keyword = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const nvkd = document
+        .getElementById("nvkdFilter")
+        .value;
+
+    const body =
+        document.getElementById("dataBody");
+
+    body.innerHTML = "";
+
+    const data = allData.filter(r => {
+
+        const text = (
+
+            r.ma + " " +
+            r.ten + " " +
+            r.diachi + " " +
+            r.nvkd
+
+        ).toLowerCase();
+
+        return text.includes(keyword)
+            && (!nvkd || r.nvkd === nvkd);
+
+    });
+
+    data.sort(
+
+        (a, b) =>
+            toNumber(b.duno) - toNumber(a.duno)
+
+    );
+
+    let tongQH = 0;
+    let tongDN = 0;
+
+    data.forEach(r => {
+
+        tongQH += toNumber(r.tongqh);
+        tongDN += toNumber(r.duno);
+
+        const tr = document.createElement("tr");
+
+        tr.onclick = () => showDetail(r);
+
+        [
+            r.ma,
+            r.ten,
+            r.diachi,
+            r.nvkd,
+            r.qh1,
+            r.qh2,
+            r.qh3,
+            r.tongqh,
+            r.duno,
+            r.thanhtoan,
+            r.muahang
+        ].forEach(value => {
+
+            const td = document.createElement("td");
+
+            td.textContent = value || "";
+
+            tr.appendChild(td);
+
+        });
+
+        body.appendChild(tr);
+
+    });
+
+    document.getElementById("tongkh")
+        .innerText = formatNumber(data.length);
+
+    document.getElementById("tongqh")
+        .innerText = formatNumber(tongQH);
+
+    document.getElementById("tongdn")
+        .innerText = formatNumber(tongDN);
+
+}
+
+document.getElementById("searchInput")
+    .addEventListener("input", render);
+
+document.getElementById("nvkdFilter")
+    .addEventListener("change", render);
+
+function showDetail(r) {
+
+    document.getElementById("modal")
+        .style.display = "block";
+
+    const detail =
+        document.getElementById("detail");
+
+    detail.innerHTML = "";
+
+    const h2 = document.createElement("h2");
+    h2.textContent = r.ten;
+
+    detail.appendChild(h2);
+
+    const fields = [
+
+        ["Mã KH:", r.ma],
+        ["Địa chỉ:", r.diachi],
+        ["NVKD:", r.nvkd],
+        ["Quá hạn 1 tháng:", r.qh1],
+        ["Quá hạn 2 tháng:", r.qh2],
+        ["Quá hạn 3 tháng:", r.qh3],
+        ["Tổng công nợ quá hạn:", r.tongqh],
+        ["Dư nợ cuối ngày:", r.duno],
+        ["Ngày thanh toán gần nhất:", r.thanhtoan],
+        ["Ngày mua hàng gần nhất:", r.muahang]
+
+    ];
+
+    fields.forEach((item, index) => {
+
+        if (index === 3 || index === 8) {
+            detail.appendChild(document.createElement("hr"));
+        }
+
+        const p = document.createElement("p");
+
+        const label = document.createElement("span");
+        label.className = "label";
+        label.textContent = item[0] + " ";
+
+        p.appendChild(label);
+        p.appendChild(document.createTextNode(item[1] || ""));
+
+        detail.appendChild(p);
+
+    });
+
+}
+
+function closeModal() {
+
+    document.getElementById("modal")
+        .style.display = "none";
+
+}
+
+document.getElementById("modal")
+    .addEventListener("click", function(e) {
+
+        if (e.target === this) {
+            closeModal();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
