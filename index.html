@@ -131,7 +131,7 @@ thead th {
     background: #0f4c81;
     color: white;
     position: sticky;
-    top: var(--sticky-offset, 290px); /* Tự động tính toán bằng JS */
+    top: var(--sticky-offset, 290px);
     z-index: 100;
     font-size: 23px;
     font-weight: bold;
@@ -395,7 +395,6 @@ tbody tr:hover {
         padding: 0 10px 10px 10px;
     }
 
-    /* Trên điện thoại bỏ ghim cả khối lớn để không che mất màn hình */
     .sticky-header {
         position: static;
         padding-top: 10px;
@@ -437,12 +436,10 @@ tbody tr:hover {
         font-size: 30px;
     }
 
-    /* Ẩn bảng trên điện thoại */
     .table-container {
         display: none;
     }
 
-    /* Hiện thẻ khách hàng */
     .mobile-list {
         display: block;
     }
@@ -631,7 +628,7 @@ function formatNumber(number) {
 
 // ================= ĐỌC FILE CSV =================
 
-fetch('Congno.csv')
+fetch('Congno.csv?v=' + Date.now(), { cache: 'no-store' })
 .then(r => {
     if (!r.ok) {
         throw new Error('Không tìm thấy file Congno.csv');
@@ -651,15 +648,10 @@ fetch('Congno.csv')
 
         if (
             c[0].includes('Mã KH') ||
-            c[0].includes('M? KH')
+            c[0].includes('M? KH') ||
+            c[1]?.toLowerCase().includes('tổng cộng')
         ) return;
 
-        /* 
-           LƯU Ý VỊ TRÍ CỘT SĐT:
-           Hiện tại đang lấy cột thứ 12 (c[11]) làm cột SĐT.
-           Nếu cột SĐT trong file CSV của bạn nằm ở vị trí khác, 
-           bạn hãy điều chỉnh lại số thứ tự c[...] tương ứng bên dưới.
-        */
         allData.push({
             ma: c[0]?.trim(),
             ten: c[1]?.trim(),
@@ -682,271 +674,4 @@ fetch('Congno.csv')
 })
 .catch(error => {
     document.getElementById("dataBody").innerHTML =
-        `<tr><td colspan="10" style="text-align:center;color:red">
-        Lỗi tải dữ liệu: ${error.message}
-        </td></tr>`;
-});
-
-// ================= TẠO DANH SÁCH NVKD =================
-
-function buildNVKD() {
-    const ds = [
-        ...new Set(
-            allData
-            .map(x => x.nvkd)
-            .filter(x => x)
-        )
-    ];
-
-    const select = document.getElementById("nvkdFilter");
-    ds.sort();
-
-    ds.forEach(x => {
-        const op = document.createElement("option");
-        op.value = x;
-        op.textContent = x;
-        select.appendChild(op);
-    });
-}
-
-// ================= HIỂN THỊ DỮ LIỆU =================
-
-function render() {
-    const keyword = document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
-
-    const nvkd = document
-        .getElementById("nvkdFilter")
-        .value;
-
-    const body = document.getElementById("dataBody");
-    const mobileList = document.getElementById("mobileList");
-
-    body.innerHTML = "";
-    mobileList.innerHTML = "";
-
-    const data = allData.filter(r => {
-        const text = (
-            r.ma + " " +
-            r.ten + " " +
-            r.diachi + " " +
-            r.nvkd + " " +
-            r.sdt
-        ).toLowerCase();
-
-        return text.includes(keyword)
-            && (!nvkd || r.nvkd === nvkd);
-    });
-
-    // Sắp xếp dư nợ giảm dần
-    data.sort((a, b) => toNumber(b.duno) - toNumber(a.duno));
-
-    let tongQH = 0;
-    let tongDN = 0;
-
-    data.forEach(r => {
-        tongQH += toNumber(r.tongqh);
-        tongDN += toNumber(r.duno);
-
-        // BẢNG MÁY TÍNH
-        const tr = document.createElement("tr");
-        tr.onclick = () => showDetail(r);
-
-        [
-            r.ten,
-            r.diachi,
-            r.nvkd,
-            r.qh1,
-            r.qh2,
-            r.qh3,
-            r.tongqh,
-            r.duno,
-            r.thanhtoan,
-            r.muahang
-        ].forEach(value => {
-            const td = document.createElement("td");
-            td.textContent = value || "";
-            tr.appendChild(td);
-        });
-
-        body.appendChild(tr);
-
-        // THẺ ĐIỆN THOẠI
-        const card = document.createElement("div");
-        card.className = "customer-card";
-        card.onclick = () => showDetail(r);
-
-        const name = document.createElement("div");
-        name.className = "customer-name";
-        name.textContent = r.ten || "Chưa có tên khách hàng";
-        card.appendChild(name);
-
-        addInfo(card, "Địa chỉ:", r.diachi);
-        addInfo(card, "NVKD:", r.nvkd);
-
-        const finance = document.createElement("div");
-        finance.className = "customer-finance";
-
-        addFinance(finance, "Quá hạn 1 tháng", r.qh1);
-        addFinance(finance, "Quá hạn 2 tháng", r.qh2);
-        addFinance(finance, "Quá hạn 3 tháng", r.qh3);
-        addFinance(finance, "Tổng quá hạn", r.tongqh, "finance-total");
-        addFinance(finance, "Dư nợ cuối ngày", r.duno, "finance-debt");
-
-        card.appendChild(finance);
-
-        const dates = document.createElement("div");
-        dates.className = "customer-date";
-
-        const tt = document.createElement("div");
-        tt.textContent = "TT gần nhất: " + (r.thanhtoan || "");
-
-        const mh = document.createElement("div");
-        mh.textContent = "Mua hàng gần nhất: " + (r.muahang || "");
-
-        dates.appendChild(tt);
-        dates.appendChild(mh);
-        card.appendChild(dates);
-
-        const hint = document.createElement("div");
-        hint.style.cssText =
-            "color:#0f4c81;font-size:19px;font-weight:bold;margin-top:14px;text-align:right";
-        hint.textContent = "Bấm để xem chi tiết →";
-        card.appendChild(hint);
-
-        mobileList.appendChild(card);
-    });
-
-    // KHÔNG CÓ DỮ LIỆU
-    document.getElementById("emptyTable")
-        .style.display = data.length === 0 ? "block" : "none";
-
-    if (data.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "empty-message";
-        empty.textContent = "Không tìm thấy khách hàng";
-        mobileList.appendChild(empty);
-    }
-
-    // CẬP NHẬT THỐNG KÊ
-    document.getElementById("tongkh").innerText = formatNumber(data.length);
-    document.getElementById("tongqh").innerText = formatNumber(tongQH);
-    document.getElementById("tongdn").innerText = formatNumber(tongDN);
-}
-
-// ================= THÔNG TIN THẺ =================
-
-function addInfo(parent, label, value) {
-    const div = document.createElement("div");
-    div.className = "customer-info";
-
-    const strong = document.createElement("strong");
-    strong.textContent = label + " ";
-    div.appendChild(strong);
-
-    div.appendChild(document.createTextNode(value || ""));
-    parent.appendChild(div);
-}
-
-// ================= Ô CÔNG NỢ =================
-
-function addFinance(parent, label, value, extraClass = "") {
-    const item = document.createElement("div");
-    item.className = "finance-item " + extraClass;
-
-    const title = document.createElement("div");
-    title.className = "finance-label";
-    title.textContent = label;
-
-    const number = document.createElement("div");
-    number.className = "finance-value";
-    number.textContent = value || "0";
-
-    item.appendChild(title);
-    item.appendChild(number);
-    parent.appendChild(item);
-}
-
-// ================= TÌM KIẾM =================
-
-document.getElementById("searchInput").addEventListener("input", render);
-document.getElementById("nvkdFilter").addEventListener("change", render);
-
-// ================= CHI TIẾT KHÁCH HÀNG =================
-
-function showDetail(r) {
-    document.getElementById("modal").style.display = "block";
-
-    const detail = document.getElementById("detail");
-    detail.innerHTML = "";
-
-    const h2 = document.createElement("h2");
-    h2.textContent = r.ten;
-    detail.appendChild(h2);
-
-    const fields = [
-        ["Mã KH:", r.ma],
-        ["Số điện thoại:", r.sdt, true], // Đánh dấu là SĐT để tạo link gọi
-        ["Địa chỉ:", r.diachi],
-        ["NVKD:", r.nvkd],
-        ["Quá hạn 1 tháng:", r.qh1],
-        ["Quá hạn 2 tháng:", r.qh2],
-        ["Quá hạn 3 tháng:", r.qh3],
-        ["Tổng công nợ quá hạn:", r.tongqh],
-        ["Dư nợ cuối ngày:", r.duno],
-        ["Ngày thanh toán gần nhất:", r.thanhtoan],
-        ["Ngày mua hàng gần nhất:", r.muahang]
-    ];
-
-    fields.forEach((item, index) => {
-        if (index === 4 || index === 9) {
-            detail.appendChild(document.createElement("hr"));
-        }
-
-        const p = document.createElement("p");
-        const label = document.createElement("span");
-        label.className = "label";
-        label.textContent = item[0] + " ";
-        p.appendChild(label);
-
-        if (item[2] && item[1]) {
-            const link = document.createElement("a");
-            link.href = "tel:" + item[1].replace(/\s+/g, '');
-            link.className = "phone-link";
-            link.textContent = item[1];
-            p.appendChild(link);
-        } else {
-            p.appendChild(document.createTextNode(item[1] || "Chưa cập nhật"));
-        }
-
-        detail.appendChild(p);
-    });
-}
-
-// ================= ĐÓNG CHI TIẾT =================
-
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
-
-// Bấm ra ngoài để đóng
-document.getElementById("modal").addEventListener("click", function(e) {
-    if (e.target === this) {
-        closeModal();
-    }
-});
-
-// Nhấn ESC để đóng
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-        closeModal();
-    }
-});
-
-</script>
-
-</body>
-</html>
+        `<tr><td colspan="10" style="text-align:center;color
