@@ -399,7 +399,7 @@ Công ty Bảo Khánh Linh;KH1 VS 1260;28/04/2026;28/04/2026;BH/CT5282;Thuế GT
 Công ty Bảo Khánh Linh;KH1 VS 1260;14/05/2026;14/05/2026;NTTK2495;Thu tiền của Công ty Bảo Khánh Linh;Thu tiền của Công ty Bảo Khánh Linh;131;11211;0;237.231.200;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Công ty Bảo Khánh Linh;KH1 VS 1260;14/05/2026;14/05/2026;NTTK2496;Thu tiền từ Bảo Khánh Linh chuyển thừa công nợ;Thu tiền từ Bảo Khánh Linh chuyển thừa công nợ;131;11211;0;60.100.000;0;60.100.000;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Công ty Bảo Khánh Linh;KH1 VS 1260;14/05/2026;14/05/2026;UNC3413;chi trả lại tiền do Bảo Khánh Linh chuyển thừa;chi trả lại tiền do Bảo Khánh Linh chuyển thừa;131;11211;60.100.000;0;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;633.843.000;633.847.996;;;;;;61,00;;
+;;;;;;;;;633.847.996;633.847.996;;;;;;61,00;;
 CÔNG TY BẢO QUÂN;KH SOIL 02655;05/06/2026;05/06/2026;BH/CT5449;VS Super Extra CI-4/SL 20W50_200L;Bán hàng CÔNG TY CỔ PHẦN ĐẦU TƯ & XÂY DỰNG BẢO QUÂN - CHI NHÁNH SÔNG LÔ;131;5111;15.537.037;0;15.537.037;0;VS22;VS Super Extra CI-4/SL 20W50_200L;Phi;1,00;15.537.037,04;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CÔNG TY BẢO QUÂN;KH SOIL 02655;05/06/2026;05/06/2026;BH/CT5449;Thuế GTGT - VS Super Extra CI-4/SL 20W50_200L;Bán hàng CÔNG TY CỔ PHẦN ĐẦU TƯ & XÂY DỰNG BẢO QUÂN - CHI NHÁNH SÔNG LÔ;131;33311;1.242.963;0;16.780.000;0;VS22;VS Super Extra CI-4/SL 20W50_200L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CÔNG TY BẢO QUÂN;KH SOIL 02655;05/06/2026;05/06/2026;BH/CT5449;VS Hydraulic AWS 68_200L;Bán hàng CÔNG TY CỔ PHẦN ĐẦU TƯ & XÂY DỰNG BẢO QUÂN - CHI NHÁNH SÔNG LÔ;131;5111;42.500.000;0;59.280.000;0;VS11;VS Hydraulic AWS 68_200L;Phi;3,00;14.166.666,67;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -438,6 +438,7 @@ CÔNG TY BẢO QUÂN;KH SOIL 02655;29/07/2026;29/07/2026;BH/CT5659;Thuế GTGT -
 CÔNG TY BẢO QUÂN;KH SOIL 02655;29/07/2026;29/07/2026;NTTK2711;Chuyển tiền thu ngày 15/05/26 sang cho Bảo Quân do NVKD báo sai KH;Chuyển tiền thu ngày 15/05/26 sang cho Bảo Quân do NVKD báo sai KH;131;11211;0;30.720.000;190.966.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CÔNG TY BẢO QUÂN;KH SOIL 02655;17/08/2026;17/08/2026;NTTK2752;Thu tiền của CÔNG TY BẢO QUÂN;Thu tiền của CÔNG TY BẢO QUÂN;131;11211;0;100.000.000;90.966.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CÔNG TY BẢO QUÂN;KH SOIL 02655;24/09/2026;24/09/2026;NTTK2855;Thu tiền của CÔNG TY BẢO QUÂN;Thu tiền của CÔNG TY BẢO QUÂN;131;11211;0;90.970.996;0;4.996;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CÔNG TY BẢO QUÂN;KH SOIL 02655;01/11/2026;01/11/2026;NVK02057;Công nợ lẻ Công ty Bảo Quân;Công nợ lẻ;131;711;4.996;0;0;0;;;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;680.000;680.000;;;;;;1,00;;
 CÔNG TY CỔ PHẦN ALLTECH GROUP;KH2 Eni 2904;29/04/2026;29/04/2026;BH/CT5289;ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);Bán hàng CÔNG TY CỔ PHẦN ALLTECH GROUP;131;5111;629.630;0;629.630;0;ENI09;ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);Can;1,00;629.629,63;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CÔNG TY CỔ PHẦN ALLTECH GROUP;KH2 Eni 2904;29/04/2026;29/04/2026;BH/CT5289;Thuế GTGT - ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);Bán hàng CÔNG TY CỔ PHẦN ALLTECH GROUP;131;33311;50.370;0;680.000;0;ENI09;ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -703,7 +704,7 @@ Cty TNHH hương linh;KH1 VS 3001;07/11/2026;07/11/2026;BH/CT6047;Thuế GTGT - 
 Cty TNHH hương linh;KH1 VS 3001;09/11/2026;09/11/2026;BH/CT6050;VS ULTRA DIESELUBE C9000 CI-4/SL 10W40_6L (4x6.0L) oto;Bán hàng Cty TNHH hương linh (chú Minh +a Sơn giao);131;5111;2.074.074;0;4.314.074;0;VS16;VS ULTRA DIESELUBE C9000 CI-4/SL 10W40_6L (4x6.0L) oto;Can;4,00;518.518,52;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Cty TNHH hương linh;KH1 VS 3001;09/11/2026;09/11/2026;BH/CT6050;Thuế GTGT - VS ULTRA DIESELUBE C9000 CI-4/SL 10W40_6L (4x6.0L) oto;Bán hàng Cty TNHH hương linh (chú Minh +a Sơn giao);131;33311;165.926;0;4.480.000;0;VS16;VS ULTRA DIESELUBE C9000 CI-4/SL 10W40_6L (4x6.0L) oto;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Cty TNHH hương linh;KH1 VS 3001;15/11/2026;15/11/2026;NTTK2975;Thu tiền của Cty TNHH hương linh;Thu tiền của Cty TNHH hương linh;131;11211;0;4.480.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;134.500.000;134.500.000;;;;;;62,00;;
+;;;;;;;;;160.400.000;134.500.000;;;;;;77,00;;
 CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;28/01/2026;28/01/2026;BH/CT4829;ENI OSO TEC 68 ISO VG 68 (AW,HM) 200L;Bán hàng CTY Vật Liệu XD Hoàng Anh;131;5111;20.185.185;0;20.185.185;0;ENI14;ENI OSO TEC 68 ISO VG 68 (AW,HM) 200L;Phi;2,00;10.092.592,59;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;28/01/2026;28/01/2026;BH/CT4829;Thuế GTGT - ENI OSO TEC 68 ISO VG 68 (AW,HM) 200L;Bán hàng CTY Vật Liệu XD Hoàng Anh;131;33311;1.614.815;0;21.800.000;0;ENI14;ENI OSO TEC 68 ISO VG 68 (AW,HM) 200L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;28/01/2026;28/01/2026;PT/CT2201;Thu tiền của CTY Vật Liệu XD Hoàng Anh - Sơn Đông - Lập Thạch - Phú Thọ;Thu tiền của CTY Vật Liệu XD Hoàng Anh - Sơn Đông - Lập Thạch - Phú Thọ;131;1112;0;21.800.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -740,6 +741,10 @@ CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;26/08/2026;26/08/2026;PT/CT2516;Th
 CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;27/10/2026;27/10/2026;BH/CT6002;ENI Sigma MS Plus 15W40 (CK-4);Bán hàng CTY Vật Liệu XD Hoàng Anh (chú minh giao);131;5111;17.592.593;0;17.592.593;0;ENI16;ENI Sigma MS Plus 15W40 (CK-4);Xô;10,00;1.759.259,26;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;27/10/2026;27/10/2026;BH/CT6002;Thuế GTGT - ENI Sigma MS Plus 15W40 (CK-4);Bán hàng CTY Vật Liệu XD Hoàng Anh (chú minh giao);131;33311;1.407.407;0;19.000.000;0;ENI16;ENI Sigma MS Plus 15W40 (CK-4);;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;27/10/2026;27/10/2026;PT/CT2608;Thu tiền của CTY Vật Liệu XD Hoàng Anh;Thu tiền của CTY Vật Liệu XD Hoàng Anh;131;1112;0;19.000.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;19/11/2026;19/11/2026;BH/CT6096;S-OIL 7 HYDRO FLUID AW68 20L;Bán hàng CTY Vật Liệu XD Hoàng Anh;131;5111;6.388.889;0;6.388.889;0;S-OIL07;S-OIL 7 HYDRO FLUID AW68 20L;Xô;5,00;1.277.777,78;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;19/11/2026;19/11/2026;BH/CT6096;Thuế GTGT - S-OIL 7 HYDRO FLUID AW68 20L;Bán hàng CTY Vật Liệu XD Hoàng Anh;131;33311;511.111;0;6.900.000;0;S-OIL07;S-OIL 7 HYDRO FLUID AW68 20L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;19/11/2026;19/11/2026;BH/CT6096;ENI Sigma MS Plus 15W40 (CK-4);Bán hàng CTY Vật Liệu XD Hoàng Anh;131;5111;17.592.593;0;24.492.593;0;ENI16;ENI Sigma MS Plus 15W40 (CK-4);Xô;10,00;1.759.259,26;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CTY Vật Liệu XD Hoàng Anh;KH1 ENI 002566;19/11/2026;19/11/2026;BH/CT6096;Thuế GTGT - ENI Sigma MS Plus 15W40 (CK-4);Bán hàng CTY Vật Liệu XD Hoàng Anh;131;33311;1.407.407;0;25.900.000;0;ENI16;ENI Sigma MS Plus 15W40 (CK-4);;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;271.188.000;277.425.000;;;;;;3.246,00;;
 Cửa hàng  Đạt Nga;KH2 KEO 065;;;;Số dư đầu kỳ;;131;;0;0;29.195.000;0;;;;;;
 Cửa hàng  Đạt Nga;KH2 KEO 065;02/01/2026;02/01/2026;BH/CT4694;Keo dán gạch thông dụng Doyshi B100;Bán hàng Cửa hàng  Đạt Nga Tiên Du - Phù Ninh - Phú Thọ;131;5111;5.333.333;0;34.528.333;0;TPB100;Keo dán gạch thông dụng Doyshi B100;Bao;72,00;74.074,07;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -1078,7 +1083,7 @@ CH Hoàng Phát ( Đức Yến );KH2 KEO 088;21/08/2026;21/08/2026;NVK01974;NVKD
 CH Kỳ Hằng Thanh Sơn;KH2 KEO  00154;06/01/2026;06/01/2026;BH/CT4717;Keo dán gạch thông dụng Doyshi B100;Bán hàng CH Kỳ Hằng Thanh Sơn -;131;5111;5.333.333;0;5.333.333;0;TPB100;Keo dán gạch thông dụng Doyshi B100;Bao;72,00;74.074,07;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Kỳ Hằng Thanh Sơn;KH2 KEO  00154;06/01/2026;06/01/2026;BH/CT4717;Thuế GTGT - Keo dán gạch thông dụng Doyshi B100;Bán hàng CH Kỳ Hằng Thanh Sơn -;131;33311;426.667;0;5.760.000;0;TPB100;Keo dán gạch thông dụng Doyshi B100;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Kỳ Hằng Thanh Sơn;KH2 KEO  00154;06/01/2026;06/01/2026;PT/CT2160;Thu tiền của CH Kỳ Hằng Thanh Sơn - Khu 12 Địch Quả Thanh Sơn, Phú Thọ;Thu tiền của CH Kỳ Hằng Thanh Sơn - Khu 12 Địch Quả Thanh Sơn, Phú Thọ;131;1112;0;5.760.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;31.298.000;25.520.000;;;;;;55,00;;
+;;;;;;;;;34.578.000;29.520.000;;;;;;58,00;;
 CH Khánh Linh ( Chị Dung );KH1 VS  0251;25/03/2026;25/03/2026;BH/CT5153;Mỡ SINOPEC HM LITHIUM CRYSTAL GREASE T3 /17KG;Bán hàng CH Khánh Linh ( Chị Dung );131;5111;1.481.481;0;1.481.481;0;DOSAN01;Mỡ SINOPEC HM LITHIUM CRYSTAL GREASE T3 /17KG;Xô;1,00;1.481.481,48;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Khánh Linh ( Chị Dung );KH1 VS  0251;25/03/2026;25/03/2026;BH/CT5153;Thuế GTGT - Mỡ SINOPEC HM LITHIUM CRYSTAL GREASE T3 /17KG;Bán hàng CH Khánh Linh ( Chị Dung );131;33311;118.519;0;1.600.000;0;DOSAN01;Mỡ SINOPEC HM LITHIUM CRYSTAL GREASE T3 /17KG;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Khánh Linh ( Chị Dung );KH1 VS  0251;07/05/2026;07/05/2026;BH/CT5325;VS Hydraulic AWS 68_18L;Bán hàng CH Khánh Linh ( Chị Dung );131;5111;2.129.630;0;3.729.630;0;VS8;VS Hydraulic AWS 68_18L;Xô;2,00;1.064.814,81;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -1113,6 +1118,10 @@ CH Khánh Linh ( Chị Dung );KH1 VS  0251;25/09/2026;25/09/2026;PT/CT2562;Thu t
 CH Khánh Linh ( Chị Dung );KH1 VS  0251;02/10/2026;02/10/2026;BH/CT5911;VS Super Dieselube CF-4/SG 20W50_18L;Bán hàng CH Khánh Linh ( Chị Dung );131;5111;2.740.000;0;8.298.000;0;VS5;VS Super Dieselube CF-4/SG 20W50_18L;Xô;2,00;1.370.000,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Khánh Linh ( Chị Dung );KH1 VS  0251;05/10/2026;05/10/2026;PT/CT2583;Thu tiền của CH Khánh Linh ( Chị Dung ) - TT Cẩm Khê - Phú Thọ;Thu tiền của CH Khánh Linh ( Chị Dung ) - TT Cẩm Khê - Phú Thọ;131;1112;0;4.000.000;4.298.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Khánh Linh ( Chị Dung );KH1 VS  0251;17/11/2026;17/11/2026;BH/CT6087;VS Super Dieselube CF-4/SG 20W50_18L;Bán hàng CH Khánh Linh ( Chị Dung ) (chú Minh+a Sơn giao) - ko vat;131;5111;1.480.000;0;5.778.000;0;VS5;VS Super Dieselube CF-4/SG 20W50_18L;Xô;1,00;1.480.000,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CH Khánh Linh ( Chị Dung );KH1 VS  0251;19/11/2026;19/11/2026;BH/CT6097;VS Super Dieselube CF-4/SG 20W50_18L;Bán hàng CH Khánh Linh ( Chị Dung ) (chú Minh+a Sơn giao);131;5111;1.480.000;0;7.258.000;0;VS5;VS Super Dieselube CF-4/SG 20W50_18L;Xô;1,00;1.480.000,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CH Khánh Linh ( Chị Dung );KH1 VS  0251;19/11/2026;19/11/2026;BH/CT6097;Dầu thủy lực AW68 18L vỏ đỏ;Bán hàng CH Khánh Linh ( Chị Dung ) (chú Minh+a Sơn giao);131;5111;1.666.667;0;8.924.667;0;ANOPEC015;Dầu thủy lực AW68 18L vỏ đỏ;Xô;2,00;833.333,33;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CH Khánh Linh ( Chị Dung );KH1 VS  0251;19/11/2026;19/11/2026;BH/CT6097;Thuế GTGT - Dầu thủy lực AW68 18L vỏ đỏ;Bán hàng CH Khánh Linh ( Chị Dung ) (chú Minh+a Sơn giao);131;33311;133.333;0;9.058.000;0;ANOPEC015;Dầu thủy lực AW68 18L vỏ đỏ;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CH Khánh Linh ( Chị Dung );KH1 VS  0251;19/11/2026;19/11/2026;PT/CT2645;Thu tiền của CH Khánh Linh ( Chị Dung );Thu tiền của CH Khánh Linh ( Chị Dung );131;1112;0;4.000.000;5.058.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;6.040.000;6.040.000;;;;;;152,00;;
 CH Mai Hiển;KH2 KEO 183;09/03/2026;09/03/2026;BH/CT5073;Keo dán gạch thông dụng Doyshi B100;Bán hàng CH Mai Hiển - Thổ Tang - 0968.659.269;131;5111;5.000.000;0;5.000.000;0;TPB100;Keo dán gạch thông dụng Doyshi B100;Bao;72,00;69.444,44;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH Mai Hiển;KH2 KEO 183;09/03/2026;09/03/2026;BH/CT5073;Thuế GTGT - Keo dán gạch thông dụng Doyshi B100;Bán hàng CH Mai Hiển - Thổ Tang - 0968.659.269;131;33311;400.000;0;5.400.000;0;TPB100;Keo dán gạch thông dụng Doyshi B100;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -1286,8 +1295,8 @@ Ch Quốc Anh;KH2 KEO 3002;14/11/2026;14/11/2026;PT/CT2636;Thu tiền của Ch Q
 ;;;;;;;;;120.000;904.000;;;;;;1,00;;
 CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;;;;Số dư đầu kỳ;;131;;0;0;784.000;0;;;;;;
 CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;13/01/2026;13/01/2026;NTTK2220;Thu tiền của CH rửa xe Anh Phương ( Phương Linh ) - ( Gia Thanh )Trung giáp, Phù Ninh, Phú Thọ;Thu tiền của CH rửa xe Anh Phương ( Phương Linh ) - ( Gia Thanh )Trung giáp, Phù Ninh, Phú Thọ;131;11217;0;784.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;03/11/2026;03/11/2026;BH/CT6022;Bao bột bóng lốp Kalaa;Bán hàng cho CH rửa xe Anh Phương (anh Trung+a Sơn+a Đức đi giao);131;5111;111.111;0;111.111;0;KALAA06;Bao bột bóng lốp Kalaa;Bao 1kg;1,00;111.111,11;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;03/11/2026;03/11/2026;BH/CT6022;Thuế GTGT - Bao bột bóng lốp Kalaa;Bán hàng cho CH rửa xe Anh Phương (anh Trung+a Sơn+a Đức đi giao);131;33311;8.889;0;120.000;0;KALAA06;Bao bột bóng lốp Kalaa;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;03/11/2026;03/11/2026;BH/CT6022;Bao bột bóng lốp Kalaa;Bán hàng cho CH rửa xe Anh Phương (anh Trung+a Sơn+a Đức đi giao);131;5111;111.111;0;111.111;0;BBKALAA;Bao bột bóng lốp Kalaa;Bao 1kg;1,00;111.111,11;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;03/11/2026;03/11/2026;BH/CT6022;Thuế GTGT - Bao bột bóng lốp Kalaa;Bán hàng cho CH rửa xe Anh Phương (anh Trung+a Sơn+a Đức đi giao);131;33311;8.889;0;120.000;0;BBKALAA;Bao bột bóng lốp Kalaa;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 CH rửa xe Anh Phương ( Phương Linh );KH1 VS - Jcap  001609;03/11/2026;03/11/2026;PT/CT2616;Thu tiền của CH rửa xe Anh Phương ( Phương Linh );Thu tiền của CH rửa xe Anh Phương ( Phương Linh );131;1111;0;120.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;0;2.400.000;;;;;;0,00;;
 CH Sơn Dụ;KH2 KEO 199;;;;Số dư đầu kỳ;;131;;0;0;2.400.000;0;;;;;;
@@ -2161,7 +2170,7 @@ Gara Bình Yến;KH1 VS - Jcap 00150;18/11/2026;18/11/2026;NTTK2987;Thu tiền c
 Gara Chiến Tuyến (Chiến Xuyến);KH1 Jcap  0253;12/08/2026;12/08/2026;BH/CT5707;Nước làm mát 20% JCAP màu Xanh 4L;Bán hàng Gara Chiến Tuyến;131;5111;2.777.778;0;2.777.778;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;Can;12,00;231.481,48;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Chiến Tuyến (Chiến Xuyến);KH1 Jcap  0253;12/08/2026;12/08/2026;BH/CT5707;Thuế GTGT - Nước làm mát 20% JCAP màu Xanh 4L;Bán hàng Gara Chiến Tuyến;131;33311;222.222;0;3.000.000;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Chiến Tuyến (Chiến Xuyến);KH1 Jcap  0253;12/08/2026;12/08/2026;NTTK2741;Thu tiền của Gara Chiến Tuyến (Chiến Xuyến);Thu tiền của Gara Chiến Tuyến (Chiến Xuyến);131;11217;0;3.000.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;69.400.000;62.696.000;;;;;;269,00;;
+;;;;;;;;;69.400.000;66.926.000;;;;;;269,00;;
 Gara Dương Nga;KH1 VS - Jcap 00145;;;;Số dư đầu kỳ;;131;;0;0;24.792.000;0;;;;;;
 Gara Dương Nga;KH1 VS - Jcap 00145;22/01/2026;22/01/2026;BH/CT4796;Nước rửa kính Kalaa 2,8L;Bán hàng Gara Dương Nga;131;5111;933.333;0;25.725.333;0;Waso 02;Nước rửa kính Kalaa 2,8L;Can;36,00;25.925,93;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Dương Nga;KH1 VS - Jcap 00145;22/01/2026;22/01/2026;BH/CT4796;Thuế GTGT - Nước rửa kính Kalaa 2,8L;Bán hàng Gara Dương Nga;131;33311;74.667;0;25.800.000;0;Waso 02;Nước rửa kính Kalaa 2,8L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -2239,6 +2248,7 @@ Gara Dương Nga;KH1 VS - Jcap 00145;17/11/2026;17/11/2026;BH/CT6084;VS ULTRA DI
 Gara Dương Nga;KH1 VS - Jcap 00145;17/11/2026;17/11/2026;BH/CT6084;Thuế GTGT - VS ULTRA DIESELUBE C9000 CI-4/SL 10W40_6L (4x6.0L) oto;Bán hàng Gara Dương Nga (chú Minh+a Sơn giao);131;33311;186.667;0;29.696.000;0;VS16;VS ULTRA DIESELUBE C9000 CI-4/SL 10W40_6L (4x6.0L) oto;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Dương Nga;KH1 VS - Jcap 00145;17/11/2026;17/11/2026;BH/CT6084;S-OIL 7 MTF FX 75W-85W (1Lx12);Bán hàng Gara Dương Nga (chú Minh+a Sơn giao);131;5111;1.666.667;0;31.362.667;0;S-OIL27;S-OIL 7 MTF FX 75W-85W (1Lx12);Chai;12,00;138.888,89;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Dương Nga;KH1 VS - Jcap 00145;17/11/2026;17/11/2026;BH/CT6084;Thuế GTGT - S-OIL 7 MTF FX 75W-85W (1Lx12);Bán hàng Gara Dương Nga (chú Minh+a Sơn giao);131;33311;133.333;0;31.496.000;0;S-OIL27;S-OIL 7 MTF FX 75W-85W (1Lx12);;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara Dương Nga;KH1 VS - Jcap 00145;19/11/2026;19/11/2026;NTTK2992;Thu tiền của Gara Dương Nga;Thu tiền của Gara Dương Nga;131;11211;0;4.230.000;27.266.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;65.282.000;47.300.000;;;;;;198,00;;
 Gara Đại Hưng;KH1 ANOPEC 00004;;;;Số dư đầu kỳ;;131;;0;0;5.576.000;0;;;;;;
 Gara Đại Hưng;KH1 ANOPEC 00004;23/01/2026;23/01/2026;BH/CT4807;Mỡ xanh 380 độ C L3 xô sắt 15kg (xô sắt xanh);Bán hàng Gara Đại Hưng;131;5111;2.777.778;0;8.353.778;0;ANOPEC006;Mỡ xanh 380 độ C L3 xô sắt 15kg (xô sắt xanh);Xô;3,00;925.925,93;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -2268,7 +2278,7 @@ Gara Đại Hưng;KH1 ANOPEC 00004;08/09/2026;08/09/2026;BH/CT5801;VS Extra gear
 Gara Đại Hưng;KH1 ANOPEC 00004;09/09/2026;09/09/2026;NTTK2822;Thu tiền của Gara Đại Hưng;Thu tiền của Gara Đại Hưng;131;11217;0;20.000.000;22.382.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Đại Hưng;KH1 ANOPEC 00004;24/10/2026;24/10/2026;BH/CT5993;VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;Bán hàng Gara Đại Hưng;131;5111;1.088.889;0;23.470.889;0;VS32;VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;Chai;24,00;45.370,37;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Đại Hưng;KH1 ANOPEC 00004;24/10/2026;24/10/2026;BH/CT5993;Thuế GTGT - VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;Bán hàng Gara Đại Hưng;131;33311;87.111;0;23.558.000;0;VS32;VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;4.546.000;7.786.000;;;;;;26,00;;
+;;;;;;;;;6.146.000;7.786.000;;;;;;46,00;;
 Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;;;;Số dư đầu kỳ;;131;;0;0;4.480.000;0;;;;;;
 Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;09/01/2026;09/01/2026;BH/CT4735;Nước rửa kính Kalaa 2,8L;Bán hàng Gara Gia Bảo ( Gia Huy );131;5111;311.111;0;4.791.111;0;Waso 02;Nước rửa kính Kalaa 2,8L;Can;12,00;25.925,93;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;09/01/2026;09/01/2026;BH/CT4735;Thuế GTGT - Nước rửa kính Kalaa 2,8L;Bán hàng Gara Gia Bảo ( Gia Huy );131;33311;24.889;0;4.816.000;0;Waso 02;Nước rửa kính Kalaa 2,8L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -2288,6 +2298,8 @@ Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;05/11/2026;05/11/2026;PT/CT2622;
 Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;17/11/2026;17/11/2026;BH/CT6086;ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);Bán hàng Gara Gia Bảo ( Gia Huy ) (chú Minh+a Sơn giao);131;5111;1.259.259;0;3.139.259;0;ENI09;ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);Can;2,00;629.629,63;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;17/11/2026;17/11/2026;BH/CT6086;Thuế GTGT - ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);Bán hàng Gara Gia Bảo ( Gia Huy ) (chú Minh+a Sơn giao);131;33311;100.741;0;3.240.000;0;ENI09;ENI Super Flœt ACEA E7 CI- 4/SL 15W40 (4*7L);;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;17/11/2026;17/11/2026;PT/CT2643;Thu tiền của Gara Gia Bảo ( Gia Huy );Thu tiền của Gara Gia Bảo ( Gia Huy );131;1112;0;2.000.000;1.240.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;19/11/2026;19/11/2026;BH/CT6098;Rửa xe không chạm;Bán hàng Gara Gia Bảo ( Gia Huy ) (chú Minh+a Sơn giao);131;5111;1.481.481;0;2.721.481;0;GBTANK02;Rửa xe không chạm;Lít;20,00;74.074,07;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara Gia Bảo ( Gia Huy );KH1 Kala - Jcap 0183;19/11/2026;19/11/2026;BH/CT6098;Thuế GTGT - Rửa xe không chạm;Bán hàng Gara Gia Bảo ( Gia Huy ) (chú Minh+a Sơn giao);131;33311;118.519;0;2.840.000;0;GBTANK02;Rửa xe không chạm;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;37.176.000;24.416.000;;;;;;109,00;;
 Gara Hưởng Nhàn;KH1 VS - Jcap 00142;;;;Số dư đầu kỳ;;131;;0;0;6.616.000;0;;;;;;
 Gara Hưởng Nhàn;KH1 VS - Jcap 00142;14/02/2026;14/02/2026;NTTK2331;Thu tiền của Gara Hưởng Nhàn - TT Thanh sơn- Phú Thọ;Thu tiền của Gara Hưởng Nhàn - TT Thanh sơn- Phú Thọ;131;11211;0;3.616.000;3.000.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -2613,7 +2625,7 @@ Gara oto Anh Tuấn (Tuấn Lốp);KH1 Kala - Jcap  00230;16/06/2026;16/06/2026;
 Gara oto Anh Tuấn (Tuấn Lốp);KH1 Kala - Jcap  00230;24/06/2026;24/06/2026;BH/CT5519;Nước rửa kinh GB - 2.8L;Bán hàng Gara oto Anh Tuấn (Tuấn Lốp);131;5111;414.815;0;414.815;0;GB21;Nước rửa kính Kalaa mới 2.8L;Can;16,00;25.925,93;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara oto Anh Tuấn (Tuấn Lốp);KH1 Kala - Jcap  00230;24/06/2026;24/06/2026;BH/CT5519;Thuế GTGT - Nước rửa kinh GB - 2.8L;Bán hàng Gara oto Anh Tuấn (Tuấn Lốp);131;33311;33.185;0;448.000;0;GB21;Nước rửa kính Kalaa mới 2.8L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara oto Anh Tuấn (Tuấn Lốp);KH1 Kala - Jcap  00230;22/07/2026;22/07/2026;NVK01940;đối chiếu công nợ sang gara Tuấn Tôm vì NVKD viếtt hóa đơn sai tên khách hàng ngày 24.06.2026;đối chiếu công nợ sang gara Tuấn Tôm vì NVKD viếtt hóa đơn sai tên khách hàng ngày 24.06.2026;131;131;0;448.000;0;0;;;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;11.648.000;6.750.000;;;;;;70,00;;
+;;;;;;;;;13.088.000;6.750.000;;;;;;76,00;;
 Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;10/02/2026;10/02/2026;BH/CT4995;Nước làm mát 20% JCAP màu Xanh 4L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);131;5111;1.333.333;0;1.333.333;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;Can;6,00;222.222,22;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;10/02/2026;10/02/2026;BH/CT4995;Thuế GTGT - Nước làm mát 20% JCAP màu Xanh 4L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);131;33311;106.667;0;1.440.000;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;10/02/2026;10/02/2026;BH/CT4995;Nước rửa kinh GB - 2.8L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);131;5111;207.407;0;1.647.407;0;GB21;Nước rửa kính Kalaa mới 2.8L;Can;8,00;25.925,93;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -2642,8 +2654,10 @@ Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;22/09/202
 Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;22/09/2026;22/09/2026;BTL505....;Nước làm mát 20% JCAP màu Xanh 4L;Khách trả lại hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);131;52123;0;1.333.333;4.564.667;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;Can;-6,00;222.222,22;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;22/09/2026;22/09/2026;BTL505....;Thuế GTGT - Nước làm mát 20% JCAP màu Xanh 4L;Khách trả lại hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);131;33311;0;106.667;4.458.000;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;22/09/2026;22/09/2026;NTTK2850;Thu tiền của Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);Thu tiền của Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);131;11211;0;1.000.000;3.458.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;05/11/2026;05/11/2026;BH/CT6036;Nước làm mát 20% JCAP màu Đỏ 4L;Bán hàng Gara oto Anh Tuấn (Tuấn Lốp) (chú Minh+a Hồng Sơn giao);131;5111;1.333.333;0;4.791.333;0;TDN1;Nước làm mát 20% JCAP màu Đỏ 4L;Can;6,00;222.222,22;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;05/11/2026;05/11/2026;BH/CT6036;Thuế GTGT - Nước làm mát 20% JCAP màu Đỏ 4L;Bán hàng Gara oto Anh Tuấn (Tuấn Lốp) (chú Minh+a Hồng Sơn giao);131;33311;106.667;0;4.898.000;0;TDN1;Nước làm mát 20% JCAP màu Đỏ 4L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;05/11/2026;05/11/2026;BH/CT6036;Nước làm mát 20% JCAP màu Đỏ 4L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp (chú Minh+a Hồng Sơn giao);131;5111;1.333.333;0;4.791.333;0;TDN1;Nước làm mát 20% JCAP màu Đỏ 4L;Can;6,00;222.222,22;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;05/11/2026;05/11/2026;BH/CT6036;Thuế GTGT - Nước làm mát 20% JCAP màu Đỏ 4L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp (chú Minh+a Hồng Sơn giao);131;33311;106.667;0;4.898.000;0;TDN1;Nước làm mát 20% JCAP màu Đỏ 4L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;19/11/2026;19/11/2026;BH/CT6099;Nước làm mát 20% JCAP màu Xanh 4L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp) (chú Minh+a Hồng Sơn giao);131;5111;1.333.333;0;6.231.333;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;Can;6,00;222.222,22;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara oto Anh Tuấn Tôm (em gara Tuấn lốp);KH1 Kala - Jcap  00231;19/11/2026;19/11/2026;BH/CT6099;Thuế GTGT - Nước làm mát 20% JCAP màu Xanh 4L;Bán hàng Gara oto Anh Tuấn Tôm (em gara Tuấn lốp) (chú Minh+a Hồng Sơn giao);131;33311;106.667;0;6.338.000;0;TDN2;Nước làm mát 20% JCAP màu Xanh 4L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;60.618.000;61.440.000;;;;;;322,00;;
 Gara oto Anh Viện;KH1 ENI 02567;;;;Số dư đầu kỳ;;131;;0;0;27.976.000;0;;;;;;
 Gara oto Anh Viện;KH1 ENI 02567;10/01/2026;10/01/2026;BH/CT4738;S-OIL 7 ATF VI (1Lx12);Bán hàng Gara oto Anh Viện;131;5111;1.333.333;0;29.309.333;0;S-OIL24;S-OIL 7 ATF VI (1Lx12);Chai;12,00;111.111,11;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -4079,7 +4093,7 @@ Gara ô tô Ngọc Hòa;KH1 VS 3000;11/03/2026;11/03/2026;PT/CT2286;Thu tiền c
 ;;;;;;;;;0;1.750.000;;;;;;0,00;;
 Gara ô tô Sơn Huệ;KH1 SOIL 02542;;;;Số dư đầu kỳ;;131;;0;0;1.750.000;0;;;;;;
 Gara ô tô Sơn Huệ;KH1 SOIL 02542;03/01/2026;03/01/2026;NTTK2203;Thu tiền của Gara ô tô Sơn Huệ - TT Vĩnh Tường - Vĩnh Phúc;Thu tiền của Gara ô tô Sơn Huệ - TT Vĩnh Tường - Vĩnh Phúc;131;11217;0;1.750.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;17.735.000;28.003.000;;;;;;10,00;;
+;;;;;;;;;17.735.000;29.953.000;;;;;;10,00;;
 Gara ôtô Minh Chung;KH1  VS-UKB 1279;;;;Số dư đầu kỳ;;131;;0;0;12.218.000;0;;;;;;
 Gara ôtô Minh Chung;KH1  VS-UKB 1279;03/02/2026;03/02/2026;PT/CT2228;Thu tiền của Gara ôtô Minh Chung - Đồng Thịnh -  Yên Lập - Phú Thọ;Thu tiền của Gara ôtô Minh Chung - Đồng Thịnh -  Yên Lập - Phú Thọ;131;1112;0;10.000.000;2.218.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara ôtô Minh Chung;KH1  VS-UKB 1279;16/04/2026;16/04/2026;BH/CT5243;Mỡ DRX Grease EP 3 (15kg) - xô sắt vàng;Bán hàng Gara ôtô Minh Chung;131;5111;3.333.333;0;5.551.333;0;S-OIL17;Mỡ DRX Grease EP 3 (15kg) - xô sắt vàng;Xô;2,00;1.666.666,67;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -4100,6 +4114,7 @@ Gara ôtô Minh Chung;KH1  VS-UKB 1279;15/08/2026;15/08/2026;BH/CT5719;Thuế GT
 Gara ôtô Minh Chung;KH1  VS-UKB 1279;02/10/2026;02/10/2026;BH/CT5912;Mỡ DRX Grease EP 3 (15kg) - xô sắt vàng;Bán hàng Gara ôtô Minh Chung;131;5111;3.703.704;0;5.653.704;0;S-OIL17;Mỡ DRX Grease EP 3 (15kg) - xô sắt vàng;Xô;2,00;1.851.851,85;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara ôtô Minh Chung;KH1  VS-UKB 1279;02/10/2026;02/10/2026;BH/CT5912;Thuế GTGT - Mỡ DRX Grease EP 3 (15kg) - xô sắt vàng;Bán hàng Gara ôtô Minh Chung;131;33311;296.296;0;5.950.000;0;S-OIL17;Mỡ DRX Grease EP 3 (15kg) - xô sắt vàng;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara ôtô Minh Chung;KH1  VS-UKB 1279;02/10/2026;02/10/2026;PT/CT2578;Thu tiền của Gara ôtô Minh Chung - Đồng Thịnh -  Yên Lập - Phú Thọ;Thu tiền của Gara ôtô Minh Chung - Đồng Thịnh -  Yên Lập - Phú Thọ;131;1112;0;4.000.000;1.950.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara ôtô Minh Chung;KH1  VS-UKB 1279;19/11/2026;19/11/2026;NTTK2993;Thu tiền của Gara ôtô Minh Chung;Thu tiền của Gara ôtô Minh Chung;131;11217;0;1.950.000;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;480.000;480.000;;;;;;12,00;;
 Gara Phú Quý;KH1 VS 01256;11/03/2026;11/03/2026;BH/CT5089;VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;Bán hàng Gara Phú Quý (đối trừ tiền hàng vào tiền sửa xe tải);131;5111;444.444;0;444.444;0;VS32;VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;Chai;12,00;37.037,04;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara Phú Quý;KH1 VS 01256;11/03/2026;11/03/2026;BH/CT5089;Thuế GTGT - VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;Bán hàng Gara Phú Quý (đối trừ tiền hàng vào tiền sửa xe tải);131;33311;35.556;0;480.000;0;VS32;VS. BRAKE FLUID DOT 3 (12 chai) 1kg/chai;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -4209,7 +4224,7 @@ Gara rửa xe Nam Huy;KH 280526;28/05/2026;28/05/2026;PT/CT2391;Thu tiền của
 Gara rửa xe Nam Huy;KH 280526;08/06/2026;08/06/2026;BTL477....;Tẩy đa năng - Xô (Can) 20L;trả lại hàng vì không sử dụng được;131;52123;0;1.111.111;0;1.111.111;GB18;Tẩy đa năng - Xô (Can) 20L;Xô;-1,00;1.111.111,11;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara rửa xe Nam Huy;KH 280526;08/06/2026;08/06/2026;BTL477....;Thuế GTGT - Tẩy đa năng - Xô (Can) 20L;trả lại hàng vì không sử dụng được;131;33311;0;88.889;0;1.200.000;GB18;Tẩy đa năng - Xô (Can) 20L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara rửa xe Nam Huy;KH 280526;08/06/2026;08/06/2026;UNC3485;chi trả lại tiền cho gara Nam Huy can tẩy đa năng;chi trả lại tiền cho gara Nam Huy can tẩy đa năng;131;11217;1.200.000;0;0;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
-;;;;;;;;;10.344.222;5.914.222;;;;;;126,00;;
+;;;;;;;;;10.344.222;9.546.222;;;;;;126,00;;
 Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;;;;Số dư đầu kỳ;;131;;0;0;2.000;0;;;;;;
 Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;02/01/2026;02/01/2026;NVK01726;Đối trừ khách hàng trả thiếu Gara oto Nguyên Hùng ;Đối trừ khách hàng trả thiếu;131;811;0;2.000;0;0;;;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;09/04/2026;09/04/2026;BH/CT5208;Nước làm mát 20% JCAP màu Đỏ 4L;Bán hàng Gara rửa xe oto Phương Thuận;131;5111;1.333.333;0;1.333.333;0;TDN1;Nước làm mát 20% JCAP màu Đỏ 4L;Can;6,00;222.222,22;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -4235,6 +4250,8 @@ Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;06/11/2026;06/11/2026;BH/
 Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;06/11/2026;06/11/2026;BH/CT6041;Thuế GTGT - Rửa xe không chạm;Bán hàng Gara rửa xe oto Phương Thuận (chú Minh+a Sơn giao);131;33311;219.259;0;3.760.000;0;GBTANK02;Rửa xe không chạm;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;06/11/2026;06/11/2026;BH/CT6041;Nước rửa kính Kalaa mới 2.8L;Bán hàng Gara rửa xe oto Phương Thuận (chú Minh+a Sơn giao);131;5111;622.222;0;4.382.222;0;GB21;Nước rửa kính Kalaa mới 2.8L;Can;24,00;25.925,93;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;06/11/2026;06/11/2026;BH/CT6041;Thuế GTGT - Nước rửa kính Kalaa mới 2.8L;Bán hàng Gara rửa xe oto Phương Thuận (chú Minh+a Sơn giao);131;33311;49.778;0;4.432.000;0;GB21;Nước rửa kính Kalaa mới 2.8L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;19/11/2026;19/11/2026;NTTK2994;Thu tiền của Gara rửa xe oto Phương Thuận;Thu tiền của Gara rửa xe oto Phương Thuận;131;11217;0;3.500.000;932.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Gara rửa xe oto Phương Thuận;KH1 VS - Jcap 00171;19/11/2026;19/11/2026;PT/CT2647;Thu tiền của Gara rửa xe oto Phương Thuận;Thu tiền của Gara rửa xe oto Phương Thuận;131;1112;0;132.000;800.000;0;;;;0,00;0,00;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 ;;;;;;;;;33.208.000;30.910.000;;;;;;38,00;;
 Gara Tuấn Tuyến;KH1 Eni 00596;;;;Số dư đầu kỳ;;131;;0;0;10.790.000;0;;;;;;
 Gara Tuấn Tuyến;KH1 Eni 00596;14/01/2026;14/01/2026;BH/CT4756;VS Super Extra CI-4/SL 15W40_200L;Bán hàng Gara Tuấn Tuyến;131;5111;11.111.111;0;21.901.111;0;VS21;VS Super Extra CI-4/SL 15W40_200L;Phi;1,00;11.111.111,11;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
@@ -5259,3 +5276,4 @@ Xưởng cơ khí Anh Tuấn;KH1 VS 00149;15/05/2026;15/05/2026;BTL473....;S-OIL
 Xưởng cơ khí Anh Tuấn;KH1 VS 00149;15/05/2026;15/05/2026;BTL473....;Thuế GTGT - S-OIL 7 BLUE #5 CF-4 20W-50 Xô 20L;thu lại hàng của XƯỞNG CƠ KHÍ ANH TUẤN;131;33311;0;100.000;7.390.000;0;S-OIL01;S-OIL 7 BLUE #5 CF-4 20W-50 Xô 20L;;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Xưởng cơ khí Anh Tuấn;KH1 VS 00149;15/05/2026;15/05/2026;BTL473....;Mỡ vàng 130 độ C L3 xô 15kg (xô xám);thu lại hàng của XƯỞNG CƠ KHÍ ANH TUẤN;131;52123;0;3.194.444;4.195.556;0;ANOPEC003;Mỡ vàng 130 độ C L3 xô 15kg (xô xám);Xô;-5,00;638.888,89;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
 Xưởng cơ khí Anh Tuấn;KH1 VS 00149;15/05/2026;15/05/2026;BTL473....;Thuế GTGT - Mỡ vàng 130 độ C L3 xô 15kg (xô xám);thu lại hàng của XƯỞNG CƠ KHÍ ANH TUẤN;131;33311;0;255.556;3.940.000;0;ANOPEC003;Mỡ vàng 130 độ C L3 xô 15kg (xô xám);;;;CÔNG TY TNHH TÂN ĐẠT VIỆT NAM
+Số dòng = 4998;;;;;;;;;6.697.176.174;6.985.173.720;;;;;;24.560,25;;
