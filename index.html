@@ -827,15 +827,36 @@ const DATE_KEYS = ["thanhtoan", "muahang"];
 
 // ================= CHUYỂN ĐỔI SỐ =================
 
+// Đọc được cả hai kiểu ghi số:
+//   kiểu Việt Nam: 5.160.000 và 6,5      kiểu Excel quốc tế: " 655,000 " và 319,444.44
 function toNumber(value) {
-    if (!value) return 0;
-    return Number(
-        String(value)
-        .replace(/\./g, '')
-        .replace(/,/g, '')
-        .replace(/-/g, '0')
-        .trim()
-    ) || 0;
+    let s = String(value ?? "").replace(/[\s '"]/g, "");
+    if (!s || s === "-") return 0;
+
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    if (s[0] === "-") { neg = true; s = s.slice(1); }
+    if (!/^[\d.,]+$/.test(s)) return 0;
+
+    const dots = (s.match(/\./g) || []).length;
+    const commas = (s.match(/,/g) || []).length;
+    let n;
+
+    if (dots && commas) {
+        // Dấu nào đứng sau cùng là dấu thập phân, dấu còn lại là ngăn cách hàng nghìn
+        const dec = s.lastIndexOf(".") > s.lastIndexOf(",") ? "." : ",";
+        const thou = dec === "." ? "," : ".";
+        n = parseFloat(s.split(thou).join("").replace(dec, "."));
+    } else if (commas) {
+        n = /^\d{1,3}(,\d{3})+$/.test(s) ? parseFloat(s.replace(/,/g, "")) : parseFloat(s.replace(",", "."));
+    } else if (dots) {
+        n = /^\d{1,3}(\.\d{3})+$/.test(s) ? parseFloat(s.replace(/\./g, "")) : parseFloat(s);
+    } else {
+        n = parseFloat(s);
+    }
+
+    if (isNaN(n)) return 0;
+    return neg ? -n : n;
 }
 
 // ================= ĐỊNH DẠNG SỐ =================
@@ -859,13 +880,44 @@ function sortValue(r, key) {
 
 // ================= NẠP DỮ LIỆU (CSV HOẶC EXCEL) =================
 
-// Chuyển nội dung CSV (phân cách bằng ;) thành mảng các dòng
+// Chuyển nội dung CSV thành mảng các dòng.
+// Tự nhận dấu phân cách (, hoặc ; hoặc tab) và đọc đúng ô nằm trong dấu ngoặc kép "..."
 function csvToRows(text) {
-    return text
-        .replace(/^\uFEFF/, '')
-        .split(/\r?\n/)
-        .filter(x => x.trim() !== '')
-        .map(r => r.split(';'));
+    text = text.replace(/^\uFEFF/, "");
+
+    const first = text.split(/\r?\n/, 1)[0] || "";
+    const cnt = { ",": 0, ";": 0, "\t": 0 };
+    let qq = false;
+    for (const ch of first) {
+        if (ch === '"') qq = !qq;
+        else if (!qq && ch in cnt) cnt[ch]++;
+    }
+    const d = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a])[0];
+
+    const out = [];
+    let row = [], cur = "", inQ = false;
+
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (inQ) {
+            if (ch === '"') {
+                if (text[i + 1] === '"') { cur += '"'; i++; }
+                else inQ = false;
+            } else cur += ch;
+        } else if (ch === '"') {
+            inQ = true;
+        } else if (ch === d) {
+            row.push(cur); cur = "";
+        } else if (ch === "\n" || ch === "\r") {
+            if (ch === "\r" && text[i + 1] === "\n") i++;
+            row.push(cur); out.push(row); row = []; cur = "";
+        } else {
+            cur += ch;
+        }
+    }
+    if (cur !== "" || row.length) { row.push(cur); out.push(row); }
+
+    return out.filter(r => r.some(c => String(c).trim() !== ""));
 }
 
 // Nhận mảng các dòng, mỗi dòng là mảng các ô, rồi hiển thị
@@ -884,17 +936,20 @@ function ingest(rows) {
             !s(1)
         ) return;
 
+        // Số tiền hiển thị thống nhất kiểu 5.160.000, số 0 hiển thị là "-"
+        const vn = i => { const n = toNumber(s(i)); return n === 0 ? "-" : formatNumber(n); };
+
         allData.push({
             ma: s(0),
             ten: s(1),
             diachi: s(2),
             sdt: s(3),
             nvkd: s(4),
-            qh1: s(5),
-            qh2: s(6),
-            qh3: s(7),
-            tongqh: s(8),
-            duno: s(9),
+            qh1: vn(5),
+            qh2: vn(6),
+            qh3: vn(7),
+            tongqh: vn(8),
+            duno: vn(9),
             thanhtoan: s(10),
             muahang: s(11)
         });
@@ -1225,12 +1280,9 @@ const byId = id => document.getElementById(id);
 const normKey = s => String(s || "").normalize("NFC").toLowerCase().replace(/\s+/g, " ").trim();
 const pad2 = n => String(n).padStart(2, "0");
 
-// "1.234.567" -> 1234567 ; "6,00" -> 6 ; "-1,00" -> -1
+// "1.234.567", "1,234,567", "6,00", "6.00", "-1,00" -> số
 function parseVN(s) {
-    s = String(s || "").trim();
-    if (!s) return 0;
-    const n = parseFloat(s.replace(/\./g, "").replace(",", "."));
-    return isNaN(n) ? 0 : n;
+    return toNumber(s);
 }
 
 // "03/06/2026" -> 20260603
@@ -1259,8 +1311,8 @@ const qtyText = n => String(Math.round(Math.abs(n) * 100) / 100);
 // ---------- Đọc file chi tiết công nợ ----------
 
 function parseDetail(text) {
-    const lines = text.replace(/^﻿/, "").split(/\r?\n/).filter(l => l.trim() !== "");
-    const head = lines[0].split(";").map(s => s.trim());
+    const lines = csvToRows(text);
+    const head = lines[0].map(s => String(s).trim());
     const ix = (name, def) => { const i = head.indexOf(name); return i >= 0 ? i : def; };
 
     const C = {
@@ -1280,10 +1332,10 @@ function parseDetail(text) {
     };
 
     for (let i = 1; i < lines.length; i++) {
-        const c = lines[i].split(";");
+        const c = lines[i];
         const ten = (c[C.ten] || "").trim();
         const ma = (c[C.ma] || "").trim();
-        if (!ten && !ma) continue;                       // dòng tổng đầu file
+        if (!ma) continue;                               // bỏ dòng tổng đầu file và dòng "Số dòng = ..." cuối file
 
         const desc = (c[C.dg] || "").trim();
         const date = (c[C.ngayCT] || c[C.ngayHT] || "").trim();
